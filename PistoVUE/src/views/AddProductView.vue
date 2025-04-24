@@ -1,5 +1,5 @@
 <!-- Inserimento Prodotti --> 
 
 <template>
-    Prodotto
+    AGGIUNGI PRODOTTO
 </template>

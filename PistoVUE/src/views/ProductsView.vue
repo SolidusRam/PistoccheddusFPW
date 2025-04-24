@@ -1,3 +1,5 @@
 <!-- Prodotti --> 
- 
-<template></template>
+
+<template>
+    Prodotti
+</template>

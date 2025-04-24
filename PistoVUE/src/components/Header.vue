@@ -1,2 +1,4 @@
 <!-- Logo e Titolo--> 
-<template></template>
+<template>
+    LOGO E TITOLO
+</template>
