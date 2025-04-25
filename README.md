@@ -118,9 +118,9 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
 
 ### 🔧 Fase 2: Sviluppo Componenti Core e Navigazione
 
-1. ⬜ **Header:** 
-   - ⬜ Implementare logo e titolo in `Header.vue`
-   - ⬜ CSS responsive (affiancato su desktop, sovrapposto su mobile)
+1. ✅ **Header:** 
+   - ✅ Implementare logo e titolo in `Header.vue`
+   - ✅ CSS responsive (affiancato su desktop, sovrapposto su mobile)
 2. ⬜ **Footer:** 
    - ⬜ Aggiungere nomi, email e copyright in `Footer.vue`
    - ⬜ CSS per ancorare in basso della pagina
