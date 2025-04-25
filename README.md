@@ -95,87 +95,87 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
 ### 🚀 Fase 1: Setup e Struttura di Base
 
 1. ✅ **Inizializzazione Progetto:** Creare il progetto Vue con Vite
-2. ⬜ **Componenti Principali:** Creare i file `.vue` per i componenti principali:
-   - `Header.vue`: Per logo e titolo
-   - `NavBar.vue`: Per il menu di navigazione
-   - `Footer.vue`: Per i dettagli del team
-   - `SidebarLeft.vue`: Per contenuti secondari
-   - `SidebarRight.vue`: Per pubblicità
-3. ⬜ **Layout App.vue:** Impostare la struttura base in `App.vue` con:
-   - Importazione dei componenti principali
-   - Integrazione di `<RouterView>`
-   - Layout semantico HTML5
-4. ⬜ **CSS Base Layout:** Definire in `<style scoped>` di `App.vue`:
-   - Layout a 3 colonne per desktop (Flexbox/Grid)
-   - Layout a colonna singola per mobile (media query)
-   - Stili base per tutti gli elementi strutturali
-5. ⬜ **Routing Iniziale:** Configurare Vue Router con le 5 pagine richieste:
-   - `HomeView.vue`: Presentazione dell'attività
-   - `ProductsView.vue`: Elenco prodotti
-   - `AddProductView.vue`: Form inserimento prodotti
-   - `TeamView.vue`: Membri del team
-   - `AuthView.vue`: Login e registrazione
+2. ✅ **Componenti Principali:** Creare i file `.vue` per i componenti principali:
+   - ✅ `Header.vue`: Per logo e titolo
+   - ✅ `NavBar.vue`: Per il menu di navigazione
+   - ✅ `Footer.vue`: Per i dettagli del team
+   - ✅ `SidebarLeft.vue`: Per contenuti secondari
+   - ✅ `SidebarRight.vue`: Per pubblicità
+3. ✅ **Layout App.vue:** Impostare la struttura base in `App.vue` con:
+   - ✅ Importazione dei componenti principali
+   - ✅ Integrazione di `<RouterView>`
+   - ✅ Layout semantico HTML5
+4. ✅ **CSS Base Layout:** Definire in `<style scoped>` di `App.vue`:
+   - ✅ Layout a 3 colonne per desktop (Flexbox/Grid)
+   - ✅ Layout a colonna singola per mobile (media query)
+   - ✅ Stili base per tutti gli elementi strutturali
+5. ✅ **Routing Iniziale:** Configurare Vue Router con le 5 pagine richieste:
+   - ✅ `HomeView.vue`: Presentazione dell'attività
+   - ✅ `ProductsView.vue`: Elenco prodotti
+   - ✅ `AddProductView.vue`: Form inserimento prodotti
+   - ✅ `TeamView.vue`: Membri del team
+   - ✅ `AuthView.vue`: Login e registrazione
 
 ### 🔧 Fase 2: Sviluppo Componenti Core e Navigazione
 
 1. ⬜ **Header:** 
-   - Implementare logo e titolo in `Header.vue`
-   - CSS responsive (affiancato su desktop, sovrapposto su mobile)
+   - ⬜ Implementare logo e titolo in `Header.vue`
+   - ⬜ CSS responsive (affiancato su desktop, sovrapposto su mobile)
 2. ⬜ **Footer:** 
-   - Aggiungere nomi, email e copyright in `Footer.vue`
-   - CSS per ancorare in basso della pagina
-3. ⬜ **NavBar:** 
-   - Implementare `<RouterLink>` alle varie pagine
-   - Stile responsive (orizzontale su desktop, verticale su mobile)
-   - Funzionalità sticky su desktop, normal flow su mobile
+   - ⬜ Aggiungere nomi, email e copyright in `Footer.vue`
+   - ⬜ CSS per ancorare in basso della pagina
+3. ✅ **NavBar:** 
+   - ✅ Implementare `<RouterLink>` alle varie pagine
+   - ⬜ Stile responsive (orizzontale su desktop, verticale su mobile)
+   - ⬜ Funzionalità sticky su desktop, normal flow su mobile
 4. ⬜ **Sidebars:** 
-   - Popolare le sidebar con contenuti pertinenti all'attività
+   - ⬜ Popolare le sidebar con contenuti pertinenti all'attività
 5. ⬜ **Navigazione Attiva:** 
-   - Logica CSS per evidenziare link pagina corrente
+   - ⬜ Logica CSS per evidenziare link pagina corrente
 
 ### 🧩 Fase 3: Sviluppo Viste e Componenti Specifici
 
 1. ⬜ **HomeView:** 
-   - Contenuto di presentazione dell'attività
-   - Immagini e testi informativi
+   - ⬜ Contenuto di presentazione dell'attività
+   - ⬜ Immagini e testi informativi
 2. ⬜ **ProductsView & ProductCard:**
-   - Componente `ProductCard.vue` con tutti i campi richiesti
-   - Stile responsive (immagine a fianco su desktop, sopra su mobile)
-   - Dati statici di esempio in `ProductsView.vue`
+   - ⬜ Componente `ProductCard.vue` con tutti i campi richiesti
+   - ⬜ Stile responsive (immagine a fianco su desktop, sopra su mobile)
+   - ⬜ Dati statici di esempio in `ProductsView.vue`
 3. ⬜ **TeamView & MemberCard:**
-   - Componente `MemberCard.vue` con foto, nome e descrizione
-   - Stile responsive (foto a fianco su desktop, sopra su mobile)
-   - Dati dei membri del team in `TeamView.vue`
+   - ⬜ Componente `MemberCard.vue` con foto, nome e descrizione
+   - ⬜ Stile responsive (foto a fianco su desktop, sopra su mobile)
+   - ⬜ Dati dei membri del team in `TeamView.vue`
 4. ⬜ **AddProductView:** 
-   - Form HTML semantico con tutti i campi necessari
-   - Bottone di invio e validazione base
+   - ⬜ Form HTML semantico con tutti i campi necessari
+   - ⬜ Bottone di invio e validazione base
 5. ⬜ **AuthView:** 
-   - Form per login e registrazione
-   - Toggle tra le due modalità
+   - ⬜ Form per login e registrazione
+   - ⬜ Toggle tra le due modalità
 
 ### 🎨 Fase 4: Styling Finale e Responsive
 
 1. ⬜ **Stili Globali:** 
-   - Colori, font e variabili in `src/assets/main.css`
+   - ⬜ Colori, font e variabili in `src/assets/main.css`
 2. ⬜ **Rifinitura Stili:** 
-   - Perfezionamento estetico di tutti i componenti
-   - Animazioni e transizioni essenziali
+   - ⬜ Perfezionamento estetico di tutti i componenti
+   - ⬜ Animazioni e transizioni essenziali
 3. ⬜ **Test Responsive:** 
-   - Verifica su diverse larghezze di schermo
-   - Correzione sovrapposizioni o disallineamenti
+   - ⬜ Verifica su diverse larghezze di schermo
+   - ⬜ Correzione sovrapposizioni o disallineamenti
 4. ⬜ **Validazione Semantica:** 
-   - Controllo tag HTML5 semanticamente corretti
+   - ⬜ Controllo tag HTML5 semanticamente corretti
 
 ### 🧹 Fase 5: Pulizia e Revisione
 
 1. ⬜ **Rimozione CSS Inutilizzato:** 
-   - Analisi e pulizia delle regole CSS non utilizzate
+   - ⬜ Analisi e pulizia delle regole CSS non utilizzate
 2. ⬜ **Controllo Requisiti:** 
-   - Verifica di tutti i punti del README soddisfatti
+   - ⬜ Verifica di tutti i punti del README soddisfatti
 3. ⬜ **Aggiornamento README:** 
-   - Correzione struttura cartelle se necessario
+   - ⬜ Correzione struttura cartelle se necessario
 4. ⬜ **Pulizia Codice:** 
-   - Rimozione commenti di debug e console.log
+   - ⬜ Rimozione commenti di debug e console.log
 
 ---
 
