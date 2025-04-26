@@ -126,8 +126,8 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
    - ⬜ CSS per ancorare in basso della pagina
 3. ✅ **NavBar:** 
    - ✅ Implementare `<RouterLink>` alle varie pagine
-   - ⬜ Stile responsive (orizzontale su desktop, verticale su mobile)
-   - ⬜ Funzionalità sticky su desktop, normal flow su mobile
+   - ✅ Stile responsive (orizzontale su desktop, verticale su mobile)
+   - ✅ Funzionalità sticky su desktop, normal flow su mobile
 4. ⬜ **Sidebars:** 
    - ⬜ Popolare le sidebar con contenuti pertinenti all'attività
 5. ⬜ **Navigazione Attiva:** 

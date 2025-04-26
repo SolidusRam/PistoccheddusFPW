@@ -64,7 +64,8 @@
     background-color: #f8f9fa;
     padding: 1rem;
     padding-top: 0;
-    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0;
+    border-bottom: 1px solid #fc4802;
   }
   
   /* Navbar */
