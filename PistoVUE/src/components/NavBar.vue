@@ -24,7 +24,7 @@ import { RouterLink } from 'vue-router'
   display: flex;
   flex-direction: column; 
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 0.5rem ;
 }
 
 .nav-link {

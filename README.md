@@ -121,9 +121,9 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
 1. ✅ **Header:** 
    - ✅ Implementare logo e titolo in `Header.vue`
    - ✅ CSS responsive (affiancato su desktop, sovrapposto su mobile)
-2. ⬜ **Footer:** 
-   - ⬜ Aggiungere nomi, email e copyright in `Footer.vue`
-   - ⬜ CSS per ancorare in basso della pagina
+2. ✅ **Footer:** 
+   - ✅ Aggiungere nomi, email e copyright in `Footer.vue`
+   - ✅ CSS per ancorare in basso della pagina
 3. ✅ **NavBar:** 
    - ✅ Implementare `<RouterLink>` alle varie pagine
    - ✅ Stile responsive (orizzontale su desktop, verticale su mobile)
