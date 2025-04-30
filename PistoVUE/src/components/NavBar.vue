@@ -18,13 +18,16 @@ import { RouterLink } from 'vue-router'
 /* Stili per la navigazione */
 .navbar-container {
   width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .main-nav {
   display: flex;
   flex-direction: column; 
   width: 100%;
-  padding: 0.5rem ;
+  padding: 0.5rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .nav-link {
@@ -33,9 +36,13 @@ import { RouterLink } from 'vue-router'
   text-decoration: none;
   padding: 0.75rem 1rem;
   font-weight: 500;
-  transition: background-color 0.2s, color 0.2s;
+  transition: all 0.3s ease;
   text-align: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 2px 0;
+  border-radius: 4px;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
 }
 
 .nav-link:last-child {
@@ -43,7 +50,9 @@ import { RouterLink } from 'vue-router'
 }
 
 .nav-link:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Stili per il link della pagina corrente */
@@ -51,19 +60,19 @@ import { RouterLink } from 'vue-router'
 .router-link-active {
   font-weight: bold;
   color: #074079;
-  background-color: #aed3ac;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Previene il layout shift quando i link cambiano stile
-   (gli elementi non vengono spostati quando diventano bold) */
+/* Previene il layout shift quando i link cambiano stile */
 .nav-link::after {
   display: block;
   content: attr(title);
   height: 0;
   visibility: hidden;
   overflow: hidden;
-  font-weight: bold; /* Forza il massimo spazio che potrebbe occupare */
+  font-weight: bold;
 }
 
 /* Media query per desktop (768px and above) */
@@ -72,17 +81,24 @@ import { RouterLink } from 'vue-router'
     flex-direction: row; 
     justify-content: flex-start;
     align-items: center;
+    padding: 0.25rem 0.5rem;
   }
   
   .nav-link {
     padding: 0.5rem 1rem;
     border-bottom: none;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 2px;
   }
   
   .nav-link:last-child {
     border-right: none;
   }
   
+  /* Effetto hover specifico per desktop */
+  .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+  }
 }
 </style>

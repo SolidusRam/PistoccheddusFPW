@@ -37,9 +37,24 @@ import SidebarRight from './components/SidebarRight.vue'
   </div>
 </template>
 
+<style>
+/* Stilizzazioni specifiche del componente principale app */
+.app-container {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
 
-<!-- Bordi di debug-->
-<style scoped>
+.main-content {
+  background-color: rgba(255, 255, 255, 0.93);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 0.5rem;
+}
 
+.sidebar-left, .sidebar-right {
+  background-color: rgba(250, 250, 250, 0.85);
+  border-radius: 5px;
+  margin: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
 </style>
 
