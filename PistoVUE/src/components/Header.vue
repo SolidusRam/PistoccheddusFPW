@@ -52,17 +52,19 @@
 }
 
 .site-title {
-  font-size: 1.5rem;
+  font-family: 'NotableLocal', sans-serif; /* Applica il font Notable */
+  font-size: 2rem;
   margin: 0;
-  color: #074079;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  color: #012586;
+  text-shadow: 1px 1px 2px rgba(19, 18, 18, 0.8);
 }
 
 .site-subtitle {
-  font-size: 0.875rem;
+  font-family:Arial, Helvetica, sans-serif; /* Applica il font Notable */
+  font-size: 1rem;
   margin-top: 0.25rem;
-  color: #333;
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.9);
+  color: #000000;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
 }
 
 /* Responsive: Desktop (768px and above) */

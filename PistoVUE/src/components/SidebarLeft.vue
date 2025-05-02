@@ -1,13 +1,5 @@
 <template>
   <div class="sidebar-left-container">
-    <!-- Navigazione Rapida -->
-    <section class="quick-nav">
-      <h3>Navigazione Rapida</h3>
-      <ul>
-        <li><a href="#" @click.prevent="scrollToTop">Torna all'inizio</a></li>
-        <li><a href="#main-content" @click.prevent="scrollTo('main-content')">Contenuto principale</a></li>
-      </ul>
-    </section>
 
     <!-- Filtri Prodotti - Visibili solo nella pagina prodotti -->
     <section v-if="$route.path === '/prodotti'" class="product-filters">
@@ -119,6 +111,15 @@
         <li v-for="product in popularProducts" :key="product.id">
           {{ product.name }} - {{ product.views }} visualizzazioni
         </li>
+      </ul>
+    </section>
+
+    <!-- Navigazione Rapida -->
+    <section class="quick-nav">
+      <h3>Navigazione Rapida</h3>
+      <ul>
+        <li><a href="#" @click.prevent="scrollToTop">Torna all'inizio</a></li>
+        <li><a href="#main-content" @click.prevent="scrollTo('main-content')">Contenuto principale</a></li>
       </ul>
     </section>
   </div>

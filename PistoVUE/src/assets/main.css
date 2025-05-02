@@ -1,3 +1,12 @@
+/* Import locale del font Notable */
+@font-face {
+  font-family: 'NotableLocal'; /* Nome che useremo per il font */
+  src: url('./fonts/Notable-Regular.ttf') format('truetype');
+  font-weight: 400; /* O 'normal' */
+  font-style: normal;
+  font-display: swap; /* Mostra fallback mentre carica */
+}
+
 /* Reset e stili base */
 * {
     box-sizing: border-box;
@@ -5,8 +14,12 @@
     padding: 0;
   }
   
-  body {
-    font-family: Arial, sans-serif;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
     line-height: 1.6;
     color: #333;
     background-image: url('@/assets/sfondoPisto.jpg');
