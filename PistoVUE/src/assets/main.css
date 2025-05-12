@@ -149,8 +149,8 @@ body {
   
   /* Footer */
   .app-footer {
-    background-color: #074079;
-    color: white;
-    padding: 1rem;
     margin-top: auto;
+    backdrop-filter: blur(3px); /* Effetto blur coerente con l'header */
+    -webkit-backdrop-filter: blur(3px);
+    padding: 0; /* Rimuoviamo il padding del contenitore perché lo gestiremo nel componente */
   }
