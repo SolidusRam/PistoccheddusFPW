@@ -26,7 +26,7 @@ const members = ref([
     id: 1,
     name: 'Mario Rossi',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in velit nec magna hendrerit pretium eget non erat.',
-    photo: 'https://randomuser.me/api/portraits/lego/1.jpg'
+    photo: 'https://randomuser.me/api/portraits/men/83.jpg'
   },
   {
     id: 2,

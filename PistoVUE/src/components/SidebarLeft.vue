@@ -1,33 +1,32 @@
 <template>
   <div class="sidebar-left-container">
-
-    <!-- Filtri Prodotti - Visibili solo nella pagina prodotti -->
-    <section v-if="$route.path === '/prodotti'" class="product-filters">
+  
+    <!-- Filtri prodotti - visibili solo nella pagina prodotti -->
+    <section v-if="$route.path === '/prodotti'" class="filters-section">
       <h3>Filtri Prodotti</h3>
       
-      <!-- Categorie -->
       <div class="filter-group">
-        <h4>Categorie</h4>
+        <h4>Categoria</h4>
         <select v-model="filtersStore.categoryFilter">
-          <option value="tutti">Tutti i dolci</option>
-          <option value="tradizionali">Tradizionali</option>
-          <option value="festivi">Festivi</option>
-          <option value="moderni">Moderni</option>
+          <option value="tutti">Tutte le categorie</option>
+          <option value="dolci-tradizionali">Dolci Tradizionali</option>
+          <option value="pasticceria-moderna">Pasticceria Moderna</option>
+          <option value="torte">Torte</option>
+          <option value="biscotti">Biscotti</option>
         </select>
       </div>
-
-      <!-- Fascia di prezzo -->
+      
       <div class="filter-group">
-        <h4>Fascia di Prezzo</h4>
+        <h4>Prezzo</h4>
         <select v-model="filtersStore.priceRangeFilter">
           <option value="tutti">Tutti i prezzi</option>
-          <option value="economici">Economici (< 15€)</option>
-          <option value="medi">Medi (15-30€)</option>
-          <option value="premium">Premium (> 30€)</option>
+          <option value="under-5">Sotto 5€</option>
+          <option value="5-10">5€ - 10€</option>
+          <option value="10-20">10€ - 20€</option>
+          <option value="over-20">Sopra 20€</option>
         </select>
       </div>
-
-      <!-- Ingredienti -->
+      
       <div class="filter-group">
         <h4>Ingredienti</h4>
         <div class="ingredients-list">
@@ -40,45 +39,18 @@
             Miele
           </label>
           <label>
-            <input type="checkbox" v-model="filtersStore.ingredientsFilter" value="senzaGlutine">
-            Senza Glutine
+            <input type="checkbox" v-model="filtersStore.ingredientsFilter" value="ricotta">
+            Ricotta
+          </label>
+          <label>
+            <input type="checkbox" v-model="filtersStore.ingredientsFilter" value="zafferano">
+            Zafferano
           </label>
         </div>
       </div>
-
-      <!-- Ordinamento -->
-      <div class="filter-group">
-        <h4>Ordina per</h4>
-        <select v-model="filtersStore.sortBy" @change="filtersStore.savePreferences()">
-          <option value="default">Predefinito</option>
-          <option value="price">Prezzo</option>
-          <option value="popularity">Popolarità</option>
-          <option value="newest">Più recenti</option>
-        </select>
-      </div>
-
-      <!-- Visualizzazione -->
-      <div class="filter-group">
-        <h4>Visualizzazione</h4>
-        <div class="view-toggles">
-          <button 
-            :class="{ active: filtersStore.viewMode === 'grid' }"
-            @click="changeViewMode('grid')"
-          >
-            Griglia
-          </button>
-          <button 
-            :class="{ active: filtersStore.viewMode === 'list' }"
-            @click="changeViewMode('list')"
-          >
-            Lista
-          </button>
-        </div>
-      </div>
-
-      <!-- Reset Filtri -->
-      <button class="reset-filters" @click="filtersStore.resetFilters">
-        Resetta Filtri
+      
+      <button class="reset-filters" @click="filtersStore.resetFilters()">
+        Resetta filtri
       </button>
     </section>
 
@@ -93,8 +65,8 @@
       </div>
     </section>
 
-    <!-- Eventi e Promozioni -->
-    <section class="events-section">
+    <!-- Eventi e Promozioni - visibili solo nelle pagine che non sono i prodotti -->
+    <section v-if="$route.path !== '/prodotti'" class="events-section">
       <h3>Eventi e Promozioni</h3>
       <div class="event-list">
         <div v-for="event in upcomingEvents" :key="event.id" class="event-item">
@@ -104,8 +76,8 @@
       </div>
     </section>
 
-    <!-- Prodotti Popolari - visibile solo nella home e prodotti -->
-    <section v-if="['/', '/prodotti'].includes($route.path)" class="popular-products">
+    <!-- Prodotti Popolari - visibili solo nella home -->
+    <section v-if="$route.path === '/'" class="popular-products">
       <h3>I Più Popolari</h3>
       <ul class="popular-list">
         <li v-for="product in popularProducts" :key="product.id">

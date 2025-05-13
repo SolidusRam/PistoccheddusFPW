@@ -35,7 +35,6 @@
         <button type="submit" class="auth-button">Accedi</button>
         
         <div class="auth-links">
-          <a href="#" class="forgot-password">Password dimenticata?</a>
           <p>Non hai ancora un account? <a href="#" @click.prevent="toggleAuthMode">Registrati</a></p>
         </div>
       </form>
