@@ -137,21 +137,20 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
 
 1. ⬜ **HomeView:** 
    - ⬜ Contenuto di presentazione dell'attività
-   - ⬜ Immagini e testi informativi
-2. ⬜ **ProductsView & ProductCard:**
-   - ⬜ Componente `ProductCard.vue` con tutti i campi richiesti
-   - ⬜ Stile responsive (immagine a fianco su desktop, sopra su mobile)
-   - ⬜ Dati statici di esempio in `ProductsView.vue`
-3. ⬜ **TeamView & MemberCard:**
-   - ⬜ Componente `MemberCard.vue` con foto, nome e descrizione
-   - ⬜ Stile responsive (foto a fianco su desktop, sopra su mobile)
-   - ⬜ Dati dei membri del team in `TeamView.vue`
-4. ⬜ **AddProductView:** 
-   - ⬜ Form HTML semantico con tutti i campi necessari
-   - ⬜ Bottone di invio e validazione base
-5. ⬜ **AuthView:** 
-   - ⬜ Form per login e registrazione
-   - ⬜ Toggle tra le due modalità
+2. ✅ **ProductsView & ProductCard:**
+   - ✅ Componente `ProductCard.vue` con tutti i campi richiesti
+   - ✅ Stile responsive (immagine a fianco su desktop, sopra su mobile)
+   - ✅ Dati statici di esempio in `ProductsView.vue`
+3. ✅ **TeamView & MemberCard:**
+   - ✅ Componente `MemberCard.vue` con foto, nome e descrizione
+   - ✅ Stile responsive (foto a fianco su desktop, sopra su mobile)
+   - ✅ Dati dei membri del team in `TeamView.vue`
+4. ✅ **AddProductView:** 
+   - ✅ Form HTML semantico con tutti i campi necessari
+   - ✅ Bottone di invio e validazione base
+5. ✅ **AuthView:** 
+   - ✅ Form per login e registrazione
+   - ✅ Toggle tra le due modalità
 
 ### 🎨 Fase 4: Styling Finale e Responsive
 
@@ -161,7 +160,7 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
    - ⬜ Perfezionamento estetico di tutti i componenti
    - ⬜ Animazioni e transizioni essenziali
 3. ⬜ **Test Responsive:** 
-   - ⬜ Verifica su diverse larghezze di schermo
+   - ✅ Verifica su diverse larghezze di schermo
    - ⬜ Correzione sovrapposizioni o disallineamenti
 4. ⬜ **Validazione Semantica:** 
    - ⬜ Controllo tag HTML5 semanticamente corretti
