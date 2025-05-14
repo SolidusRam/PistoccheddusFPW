@@ -28,6 +28,7 @@ import { RouterLink } from 'vue-router'
   padding: 0.5rem;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  align-items: center; /* Aggiunto per centrare gli elementi in visualizzazione mobile */
 }
 
 .nav-link {
@@ -79,7 +80,7 @@ import { RouterLink } from 'vue-router'
 @media (min-width: 768px) {
   .main-nav {
     flex-direction: row; 
-    justify-content: flex-start;
+    justify-content: center; /* Modificato da flex-start a center */
     align-items: center;
     padding: 0.25rem 0.5rem;
   }
