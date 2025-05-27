@@ -9,17 +9,20 @@
       </div>
       <div class="details-container">
         <div class="team-contacts">
-          <ul>
-            <li>
+          <div class="team-members">
+            <div class="team-member">
               <span>Mario Rossi - <a href="mailto:mario.rossi@email.com">mario.rossi@email.com</a></span>
-              <span class="separator">|</span>
+            </div>
+            <div class="team-member">
               <span>Anna Bianchi - <a href="mailto:anna.bianchi@email.com">anna.bianchi@email.com</a></span>
-              <span class="separator">|</span>
+            </div>
+            <div class="team-member">
               <span>Giuseppe Verdi - <a href="mailto:giuseppe.verdi@email.com">giuseppe.verdi@email.com</a></span>
-              <span class="separator">|</span>
+            </div>
+            <div class="team-member">
               <span>Laura Neri - <a href="mailto:laura.neri@email.com">laura.neri@email.com</a></span>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div class="social-links">
           <div class="social-icons">
@@ -96,30 +99,30 @@
   gap: 0.5rem;
 }
 
-.team-contacts ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.team-contacts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.team-contacts li {
-  margin-bottom: 0.25rem;
+.team-members {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.team-member {
+  display: flex;
   align-items: center;
   color: #e0e0e0;
   font-size: 0.8rem;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  text-align: center;
 }
 
-/* Nascondi il separatore su mobile */
-.separator {
-  display: none;
-}
-
-.team-contacts li span:first-child,
-.team-contacts li span:last-child {
-  margin: 0 0 0.25rem 0;
+.team-member span {
+  margin: 0;
 }
 
 .team-contacts a {
@@ -216,24 +219,23 @@
     width: auto;
   }
 
-  /* Ripristina layout orizzontale per desktop */
-  .team-contacts li {
+  /* Layout orizzontale per desktop */
+  .team-members {
     flex-direction: row;
-    justify-content: flex-end;
     flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0;
   }
-
-  /* Mostra il separatore su desktop */
-  .separator {
-    display: inline;
+  
+  .team-member {
+    position: relative;
+  }
+  
+  .team-member:not(:last-child)::after {
+    content: " |";
     margin: 0 0.5rem;
     color: rgba(255, 255, 255, 0.5);
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
-  }
-
-  /* Ripristina margini per desktop */
-  .team-contacts li span {
-    margin: 0;
   }
 }
 </style>

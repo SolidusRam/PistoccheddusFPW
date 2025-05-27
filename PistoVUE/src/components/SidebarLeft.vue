@@ -200,10 +200,12 @@ function scrollTo(elementClass) {
   }
 }
 
+// Cambia la modalità di visualizzazione
 function changeViewMode(mode) {
   filtersStore.viewMode = mode
   filtersStore.savePreferences()
 }
+
 </script>
 
 <style scoped>
