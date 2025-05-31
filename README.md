@@ -90,6 +90,30 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
 
 ---
 
+# Modulo 2: Database (aggiornato al 29/05/25)
+
+
+Realizzare un database denominato col nome del vostro gruppo (tutto minuscolo, senza spazi o simboli). 
+
+Il database deve contenere almeno 2 tabelle: 
+
+    Tabella "utenti", che contiene le informazioni degli utenti registrati (username, password, nome, cognome, e-mail, città, ecc); Alla consegna dovrà contenere i dati dei componenti del gruppo già inseriti per agevolare la correzione del progetto. L’username dovrà contenere il cognome dello studente mentre la password le ultime 5 cifre della sua matricola. Gli altri dati possono essere inventati. 
+
+    Tabella “prodotti” o “attività”, che contiene tutte le informazioni relative agli elementi presentati nella relativa pagina dell’applicazione web. Alla consegna dovrà contenere almeno 5 prodotti/attività già inseriti per agevolare la correzione del progetto. 
+
+Implementare la comunicazione tra server e database per gestire l’autenticazione degli utenti come visto a lezione. 
+
+Le informazioni relative agli elementi mostrati nella pagina dei prodotti devono essere recuperate dal database.  
+
+Gestire inoltre l’inserimento di un nuovo utente e di un nuovo prodotto (e quindi la loro memorizzazione nel database). 
+
+Creare le tabelle rispettando le regole di buona progettazione viste a lezione. 
+
+NB: non salvate le immagini dei prodotti in binario (BLOB o simili) nelle tabelle, ma salvate, nel campo foto, il path relativo alle immagini dei prodotti presenti in una cartella sul server. Non è necessario gestire il caricamento dell’immagine per il nuovo prodotto inserito. Nell’applicazione web sarà presente una fotografia standard (es: placeholder.jpg) che verrà associata a tutti i nuovi prodotti inseriti (per i quali non è quindi presente una foto).  
+
+NB: Dovete consegnare anche un dump del database popolato (funzione backup). Per agevolare la correzione dei progetti vi chiediamo di verificare che l’importazione del vostro dump vada a buon fine utilizzando l’interfaccia utente di pgAdmin. 
+Ultime modifiche: giovedì, 29 maggio 2025, 15:
+
 ## 📋 Roadmap di Sviluppo
 
 ### 🚀 Fase 1: Setup e Struttura di Base
@@ -165,51 +189,186 @@ Realizzare il layout utilizzando le tecniche viste in laboratorio e rispettando 
 4. ⬜ **Validazione Semantica:** 
    - ⬜ Controllo tag HTML5 semanticamente corretti
 
-### 🧹 Fase 5: Pulizia e Revisione
+### 🧹 Fase 5: Pulizia e Revisione Modulo 1
 
 1. ⬜ **Rimozione CSS Inutilizzato:** 
    - ⬜ Analisi e pulizia delle regole CSS non utilizzate
 2. ⬜ **Controllo Requisiti:** 
-   - ⬜ Verifica di tutti i punti del README soddisfatti
-3. ⬜ **Aggiornamento README:** 
-   - ⬜ Correzione struttura cartelle se necessario
+   - ⬜ Verifica di tutti i punti del Modulo 1 soddisfatti
+3. ⬜ **Completamento Template:** 
+   - ⬜ Ripristino contenuti mancanti in NavBar, AuthView, ProductCard, Sidebars
 4. ⬜ **Pulizia Codice:** 
    - ⬜ Rimozione commenti di debug e console.log
 
 ---
 
-# Struttura delle cartelle
+## 🗄️ MODULO 2: DATABASE E BACKEND
 
+### 🗂️ Fase 6: Database PostgreSQL - Creazione
+
+1. ✅ **Setup Database:**
+   - ✅ Installare PostgreSQL e pgAdmin
+   - ✅ Creare database `pistoccheddus` (nome gruppo minuscolo)
+   - ✅ Creare le 2 tabelle obbligatorie
+
+2. ✅ **Tabella `utenti` (IMPLEMENTATA):**
+   ```sql
+   CREATE TABLE utenti (
+       id SERIAL PRIMARY KEY,
+       username VARCHAR(20) UNIQUE NOT NULL,
+       password VARCHAR(20) NOT NULL,
+       nome VARCHAR(50) NOT NULL,
+       cognome VARCHAR(50) NOT NULL,
+       email VARCHAR(50) UNIQUE NOT NULL,
+       citta VARCHAR(20),
+       data_registrazione TIMESTAMP
+   );
+   ```
+
+3. ✅ **Tabella `prodotti` (IMPLEMENTATA):**
+   ```sql
+   CREATE TABLE prodotti (
+       id SERIAL PRIMARY KEY,
+       titolo VARCHAR(20) NOT NULL,
+       descrizione VARCHAR(250),
+       prezzo INTEGER NOT NULL,  -- Centesimi
+       immagine VARCHAR(200),
+       data_scadenza TIMESTAMP NOT NULL,
+       origine_ricetta VARCHAR(100)
+   );
+   ```
+
+### 📊 Fase 7: Database - Popolamento Dati
+
+1. ✅ **Dati Team (COMPLETATO):**
+   - ✅ Inseriti 4 membri del gruppo nella tabella `utenti`
+   - ✅ Username = cognome dello studente (melis, parasuco, pisanu, derosas)
+   - ✅ Password = ultime 5 cifre matricola (66431, 66469, 66181, 66474)
+   - ✅ Inventati: nome, email, città
+
+2. ✅ **Dati Prodotti (COMPLETATO):**
+   - ✅ Inseriti 5 dolci sardi nella tabella `prodotti`
+   - ✅ Prodotti: Pistoccheddus, Torrone, Papassini, Seadas, Pardula
+   - ✅ Campo `immagine`: tutti impostati a `placeholder.jpg`
+   - ✅ Aggiunti campi extra: origine_ricetta, data_scadenza
+
+### 🖥️ Fase 8: Server Base e Connessione
+
+1. ⬜ **Server Node.js Semplice:**
+   - ⬜ Creare cartella `server/` nel progetto
+   - ⬜ `npm init` e installare: `express`, `pg`, `cors`
+   - ⬜ File `server.js` con connessione PostgreSQL di base
+
+2. ⬜ **Test Connessione:**
+   - ⬜ Endpoint semplice per testare connessione database
+   - ⬜ Query di prova per leggere dalle tabelle
+
+### 🔐 Fase 9: Autenticazione Base
+
+1. ⬜ **API Login/Registrazione:**
+   - ⬜ `POST /login` - controllo username/password
+   - ⬜ `POST /register` - inserimento nuovo utente
+   - ⬜ Risposta semplice: success/error (no JWT complessi)
+
+2. ⬜ **Frontend Connesso:**
+   - ⬜ Aggiornare `AuthView.vue` per chiamare API reali
+   - ⬜ Gestione risposta base (redirect o messaggio errore)
+
+### 📦 Fase 10: Gestione Prodotti
+
+1. ⬜ **API Prodotti:**
+   - ⬜ `GET /prodotti` - recuperare lista dal database
+   - ⬜ `POST /prodotti` - inserire nuovo prodotto
+
+2. ⬜ **Frontend Aggiornato:**
+   - ⬜ `ProductsView.vue` carica prodotti da API invece di dati statici
+   - ⬜ `AddProductView.vue` invia dati al server
+   - ⬜ Immagine `placeholder.jpg` per prodotti senza foto
+
+### 🔧 Fase 11: Dump e Finalizzazione
+
+1. ⬜ **Database Dump (OBBLIGATORIO):**
+   - ⬜ Creare backup con pgAdmin (Export > Custom format)
+   - ⬜ Testare import del dump per verifica
+   - ⬜ File `pistoccheddus_dump.sql` per consegna
+
+2. ⬜ **Test Finale:**
+   - ⬜ Login con dati team funzionante
+   - ⬜ Registrazione nuovo utente funzionante  
+   - ⬜ Visualizzazione prodotti da database
+   - ⬜ Inserimento nuovo prodotto funzionante
+
+---
+
+# 📂 Struttura Progetto
+
+## Frontend (Vue.js) - PistoVUE/
 ```
-PistoVUE\
-├── public\
-│   ├── favicon.ico
-├── src\
-│   ├── assets\
-│   │   ├── base.css
-│   │   ├── main.css
-│   ├── componets\
-│   │   ├── Footer.vue
-│   │   ├── Header.vue
-│   │   ├── MemberCard.vue
-│   │   ├── NavBar.vue
-│   │   ├── ProductCard.vue
-│   │   ├── SideBarLeft.vue
-│   |   ├── SideBarRight.vue
-│   │   ├── icons\
-│   │   │   ├── logo.png
-│   ├── router\
-│   │   ├── index.js
-│   ├── views\
-│   │   ├── HomeView.vue
-│   │   ├── AuthView.vue
-│   │   ├── ProductsView.vue
-│   │   ├── TeamView.vue
-│   │   ├── AddProductView.vue
+PistoVUE/
+├── public/
+├── src/
+│   ├── assets/           # Immagini, CSS, font
+│   ├── components/       # Header, Footer, NavBar, ProductCard, etc.
+│   ├── views/           # HomeView, ProductsView, AuthView, etc.
+│   ├── router/          # Configurazione routing
+│   ├── stores/          # Pinia (stato applicazione)
 │   ├── App.vue
-│   ├── main.js
-├── .gitignore
-├── index.html
+│   └── main.js
+└── package.json
+```
+
+## Backend (Node.js) - server/
+```
+server/
+├── server.js            # Server Express principale
 ├── package.json
-├── vite.config.js
+├── config/
+│   └── database.js      # Connessione PostgreSQL
+├── routes/
+│   ├── auth.js          # API login/registrazione
+│   └── products.js      # API prodotti
+├── public/
+│   └── images/
+│       └── placeholder.jpg
+└── sql/
+    ├── create_tables.sql
+    ├── insert_data.sql
+    └── pistoccheddus_dump.sql
+```
+
+## Database PostgreSQL - database/
+```
+database/
+├── backup.sql           # ✅ Dump completo database con dati
+├── README.md           # ✅ Guida setup e istruzioni  
+├── queries.sql         # ✅ Query di esempio per test API
+└── schema.png          # ⬜ Screenshot struttura pgAdmin (da aggiungere)
+```
+
+## Database Schema (IMPLEMENTATO)
+```sql
+-- Database: pistoccheddus ✅
+
+-- Tabella utenti (4 membri team inseriti) ✅
+CREATE TABLE utenti (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(20) UNIQUE NOT NULL,    -- melis, parasuco, pisanu, derosas
+    password VARCHAR(20) NOT NULL,           -- 66431, 66469, 66181, 66474
+    nome VARCHAR(50) NOT NULL,
+    cognome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    citta VARCHAR(20),
+    data_registrazione TIMESTAMP
+);
+
+-- Tabella prodotti (5 dolci sardi inseriti) ✅
+CREATE TABLE prodotti (
+    id SERIAL PRIMARY KEY,
+    titolo VARCHAR(20) NOT NULL,             -- Pistoccheddus, Torrone, etc.
+    descrizione VARCHAR(250),
+    prezzo INTEGER NOT NULL,                 -- In centesimi (100 = 1€)
+    immagine VARCHAR(200),                   -- placeholder.jpg
+    data_scadenza TIMESTAMP NOT NULL,
+    origine_ricetta VARCHAR(100)            -- Campidano, Tonara, etc.
+);
 ```
