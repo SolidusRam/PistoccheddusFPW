@@ -1,6 +1,69 @@
 # Modulo 1: HTML + CSS (aggiornato al 23/04/25)
 
-Realizzare un’applicazione web formata da 5 pagine web. Nello specifico:
+Realizzare un’applicazione web formata da 5 pagine web. Nello spNB: Dovete consegnare anche un dump del databNB: Dovete consegnare anche un dump del database popolato (funzione backup). Per agevolare la correzione dei progetti vi chiediamo di verificare che l'importazione del vostro dump vada a buon fine utilizzando l'interfaccia utente di pgAdmin. 
+Ultime modifiche: giovedì, 29 maggio 2025, 15:
+
+---
+
+# FAQ: Tecnologie Utilizzabili
+
+| Categoria | ✅ **CONSENTITO** | ❌ **NON CONSENTITO** |
+|-----------|-------------------|----------------------|
+| **HTML** | Tutti i tag di HTML5 visti a lezione | Ulteriori tag di versioni precedenti a HTML5 e che sono del tutto superflui per il progetto |
+| **CSS** | - Tutto quello visto a lezione<br>- Eventuali `calc()` SOLO per la disposizione di elementi dentro il layout visto a lezione e NON in sostituzione del layout a 12 colonne<br>- Altre proprietà basilari perlopiù stilistiche che non abbiamo potuto vedere a lezione per motivi di tempo | - Librerie esterne<br>- Framework (es: Bootstrap)<br>- `display:flex`<br>- `display:grid`<br>- Qualunque cosa sostituisca il layout a 12 colonne<br>- Qualunque cosa sostituisca le media query come viste a lezione |
+| **Vue/JS** | - Tutto quello visto a lezione<br>- Vue.js e librerie come Router e Pinia<br>- Tutti i componenti che volete fatti da voi e che non abbiano robe non viste | - Librerie non viste a lezione<br>- Componenti di librerie esterne<br>- Plugin non richiesti |
+| **Server** | - Node ed Express | - QUALUNQUE TECNOLOGIA DIVERSA DA NODE ED EXPRESS<br>- STRUTTURA DEL SERVER DIVERSA DA QUELLA VISTA A LEZIONE |
+| **Database** | Database relazionale SQL il cui backup sia perfettamente compatibile con PostgreSQL e pgAdmin | Database non relazionali o comunque non compatibili con le tecnologie viste a lezione |
+| **Controlli** | Tutto ciò che può essere fatto con JavaScript vanilla senza l'installazione di ulteriori librerie | Librerie esterne che facciano i controlli con funzioni apposite e che implichino che non le stiate implementando voi |
+
+---
+
+## 📋 Roadmap di Sviluppopopolato (funzione backup). Per agevolare la correzione dei progetti vi chiediamo di verificare che l'importazione del vostro dump vada a buon fine utilizzando l'interfaccia utente di pgAdmin. 
+Ultime modifiche: giovedì, 29 maggio 2025, 15:
+
+---
+
+# Modulo 3: SESSIONI + STATO (aggiornato al 05/06/25)
+
+I dati inseriti all'interno del form nella pagina di login devono essere inviati al server e utilizzati per impostare una sessione. 
+
+Se l'autenticazione va a buon fine (ovvero username e password uguali a quelli salvati nella tabella "utenti" presente nel database) l'utente viene rimandato nella homepage. 
+
+Se l'autenticazione non va a buon fine l'utente rimane nella pagina di login e viene mostrato un messaggio di errore che indica se l'utente non è registrato (username non presente nel database) o se la password è errata (username presente nel database). 
+
+Se l'utente ha effettuato l'accesso (e quindi la sessione è stata correttamente impostata), nella pagina di login non dovrà più essere visibile il form di accesso e/o quello di registrazione ma una sezione che mostra un messaggio di benvenuto, i dati dell'utente presenti nel database e un pulsante per eseguire il logout e invalidare la sessione.  
+
+La password non dovrà essere mostrata ma dovrà esserci un pulsante/paragrafo cliccabile "Cambio password" che mostri una sezione (normalmente nascosta) che contiene un form dove inserire la vecchia password, la nuova password due volte e un pulsante per inviare la richiesta al server.  
+
+I dati salvati nello store lato client devono essere persistenti per tutta la durata della sessione e non devono quindi essere persi effettuando il refresh della pagina. 
+
+NB: i prodotti sono visibili solo se l'autenticazione va a buon fine. In caso di autenticazione non effettuata la pagina dei prodotti non deve essere accessibile e l'utente deve essere rimandato automaticamente alla pagina di login. 
+
+NB2: anche la pagina di inserimento di un nuovo prodotto deve essere visibile solo se l'autenticazione va a buon fine. 
+
+Ultime modifiche: giovedì, 5 giugno 2025, 14:29
+
+---
+
+# Modulo 4: CONTROLLI (aggiornato al 05/06/25)
+
+Utilizzando il linguaggio Javascript, realizzare la validazione dei dati inseriti dall'utente lato client. 
+
+Tutti i form presenti nell'applicazione web (registrazione, login, cambio password e inserimento nuovi prodotti) devono contenere appositi controlli per verificare che gli input dell'utente rispettino delle regole.  
+
+Nel form di registrazione, inserire tutti i controlli relativi a tutti i campi presenti nella tabella 'utenti' del database (username, password, nome, cognome, e-mail, città, più due a scelta). Gestire il caso in cui durante la registrazione di un nuovo utente lo username (che sarà la chiave primaria nella tabella del db) esista già, in questo caso deve essere mostrato all'utente un messaggio di errore. 
+
+Il form del cambio password invece, dovrà verificare che la nuova password scelta (ricordatevi che deve essere inserita due volte) combaci perfettamente. Inoltre, non deve essere possibile inserire una nuova password uguale alla vecchia; quindi, mostrare un messaggio nel form in caso si verifichi questa situazione. 
+
+I dati di tutti i form vengono controllati prima di essere inviati al server e l'invio avviene solo se la validazione lato client è andata a buon fine. Prevedere quindi, per ogni campo di input testuale un numero massimo di caratteri, e per ogni input numerico un valore minimo e un valore massimo. I dati vengono inviati al server solo se rispettano i limiti impostati. 
+
+Qualora l'utente inserisca un valore non corretto deve essere mostrato un messaggio di errore e i dati NON devono poter essere inviati al server, per esempio disabilitando il pulsante di invio. 
+
+Per tutti i campi di testo deve essere visibile all'utente quanti sono i caratteri a disposizione rimanenti rispetto alla dimensione massima consentita per il campo corrente. 
+
+Per tutti i campi numerici deve essere visibile all'utente quali sono i valori soglia evidenziandoli in rosso.
+
+Ultime modifiche: giovedì, 5 giugno 2025, 14:29ifico:
 
 1. Una homepage in cui viene presentata l’attività.
 2. Una pagina che contiene l’elenco dei prodotti. Per ogni prodotto devono essere indicati almeno i seguenti campi: titolo, descrizione, prezzo, immagine. Inoltre, in base al tema del progetto dovranno esserci inseriti almeno altri due campi come ad esempio: data di scadenza, quantità, altre informazioni, etc.
@@ -297,6 +360,91 @@ Ultime modifiche: giovedì, 29 maggio 2025, 15:
    - ⬜ Registrazione nuovo utente funzionante  
    - ⬜ Visualizzazione prodotti da database
    - ⬜ Inserimento nuovo prodotto funzionante
+
+---
+
+## 🔐 MODULO 3: SESSIONI E STATO
+
+### 🛠️ Fase 12: Gestione Sessioni
+
+1. ⬜ **Backend - Sessioni:**
+   - ⬜ Installare `express-session` per gestione sessioni
+   - ⬜ Configurare middleware sessioni nel server
+   - ⬜ Aggiornare API login per impostare sessione su autenticazione
+
+2. ⬜ **Autenticazione Migliorata:**
+   - ⬜ Messaggi errore specifici (utente non esistente vs password errata)
+   - ⬜ Redirect automatico a homepage dopo login successo
+   - ⬜ Endpoint per controllo stato sessione
+
+### 📄 Fase 13: Pagina Profilo Utente
+
+1. ⬜ **AuthView Aggiornata:**
+   - ⬜ Mostrare dati utente se sessione attiva (no form login)
+   - ⬜ Messaggio benvenuto con dati dal database
+   - ⬜ Pulsante logout per invalidare sessione
+   - ⬜ Nascondere password nei dati visualizzati
+
+2. ⬜ **Cambio Password:**
+   - ⬜ Sezione nascosta con form cambio password
+   - ⬜ Campi: vecchia password, nuova password (2x)
+   - ⬜ Validazione: nuova password diversa da vecchia
+   - ⬜ API backend per aggiornamento password
+
+### 🔒 Fase 14: Protezione Route
+
+1. ⬜ **Frontend - Route Guards:**
+   - ⬜ Store Pinia per stato autenticazione persistente
+   - ⬜ Guard su ProductsView: redirect a login se non autenticato
+   - ⬜ Guard su AddProductView: redirect a login se non autenticato
+   - ⬜ Persistenza sessione dopo refresh pagina
+
+2. ⬜ **Backend - Protezione API:**
+   - ⬜ Middleware controllo sessione per API protette
+   - ⬜ Errore 401 se sessione non valida
+
+---
+
+## ✅ MODULO 4: VALIDAZIONE E CONTROLLI
+
+### 📝 Fase 15: Validazione Form Frontend
+
+1. ⬜ **Form Registrazione:**
+   - ⬜ Controlli tutti campi tabella utenti (username, password, nome, cognome, email, città + 2 extra)
+   - ⬜ Contatore caratteri per ogni campo testuale
+   - ⬜ Limiti min/max caratteri con soglie evidenziate
+   - ⬜ Controllo username già esistente (chiamata API)
+
+2. ⬜ **Form Login:**
+   - ⬜ Validazione campi obbligatori
+   - ⬜ Disabilitazione pulsante invio se validazione fallisce
+   - ⬜ Messaggi errore chiari per ogni campo
+
+3. ⬜ **Form Cambio Password:**
+   - ⬜ Controllo match nuova password (inserita 2 volte)
+   - ⬜ Controllo nuova ≠ vecchia password
+   - ⬜ Criteri password sicura (lunghezza, caratteri)
+   - ⬜ Messaggi errore specifici
+
+4. ⬜ **Form Nuovo Prodotto:**
+   - ⬜ Validazione tutti campi prodotto
+   - ⬜ Limiti caratteri con contatori visibili
+   - ⬜ Validazione numerica per prezzo (min/max evidenziati)
+   - ⬜ Controllo campi obbligatori
+
+### 🎯 Fase 16: UX Avanzata Validazione
+
+1. ⬜ **Feedback Visivo:**
+   - ⬜ Bordi rossi per campi invalidi
+   - ⬜ Icone check/error accanto ai campi
+   - ⬜ Colori diversi per valori numerici fuori soglia
+   - ⬜ Disabilitazione dinamica pulsanti invio
+
+2. ⬜ **Controlli Real-time:**
+   - ⬜ Validazione durante digitazione (debounced)
+   - ⬜ Controllo username esistente on blur
+   - ⬜ Aggiornamento contatori caratteri in tempo reale
+   - ⬜ Indicatori forza password
 
 ---
 
