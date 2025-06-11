@@ -177,14 +177,15 @@ const handleRegister = () => {
 }
 
 .auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.auth-form .form-group {
+  margin-bottom: 1.2rem;
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .form-group label {
@@ -211,9 +212,13 @@ const handleRegister = () => {
 
 .remember-me,
 .accept-terms {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.remember-me input,
+.accept-terms input {
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .remember-me label,
@@ -241,11 +246,12 @@ const handleRegister = () => {
 
 .auth-links {
   margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
+  text-align: center;
   color: #555;
+}
+
+.auth-links p {
+  margin-bottom: 0.8rem;
 }
 
 .auth-links a {

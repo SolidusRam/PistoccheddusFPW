@@ -22,13 +22,17 @@ import { RouterLink } from 'vue-router'
 }
 
 .main-nav {
-  display: flex;
-  flex-direction: column; 
   width: 100%;
   padding: 0.5rem;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  align-items: center; /* Aggiunto per centrare gli elementi in visualizzazione mobile */
+  text-align: center;
+}
+
+.main-nav::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .nav-link {
@@ -79,13 +83,14 @@ import { RouterLink } from 'vue-router'
 /* Media query per desktop (768px and above) */
 @media (min-width: 768px) {
   .main-nav {
-    flex-direction: row; 
-    justify-content: center; /* Modificato da flex-start a center */
-    align-items: center;
+    text-align: center;
     padding: 0.25rem 0.5rem;
   }
   
   .nav-link {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
     padding: 0.5rem 1rem;
     border-bottom: none;
     border-right: 1px solid rgba(0, 0, 0, 0.1);

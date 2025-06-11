@@ -50,10 +50,15 @@ body {
 }
 
 .row {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
   margin-right: -15px;
   margin-left: -15px;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /* Colonne per layout mobile (default) */
@@ -63,6 +68,7 @@ body {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
+  float: left;
 }
 
 /* Colonne per layout desktop */
@@ -83,9 +89,8 @@ body {
 
 /* Stili generali dell'applicazione */
 .app-container {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  position: relative;
 }
 
 /* Header */
@@ -112,38 +117,43 @@ body {
 
 /* Contenuto principale */
 .app-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  width: 100%;
+}
+
+.app-content::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 @media (min-width: 768px) {
-  .app-content {
-    flex-direction: row;
-  }
+  /* Layout desktop già gestito tramite float e width % */
 }
 
 /* Sidebar sinistra */
 .sidebar-left {
   background-color: #fafafa;
   padding: 1rem;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .sidebar-left {
     width: 25%;
+    float: left;
   }
 }
 
 /* Contenuto centrale */
 .main-content {
   padding: 1rem;
-  flex: 1;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .main-content {
     width: 50%;
+    float: left;
   }
 }
 
@@ -151,18 +161,21 @@ body {
 .sidebar-right {
   background-color: #f8f9fa;
   padding: 1rem;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .sidebar-right {
     width: 25%;
+    float: left;
   }
 }
 
 /* Footer */
 .app-footer {
-  margin-top: auto;
-  backdrop-filter: blur(3px); /* Effetto blur coerente con l'header */
+  clear: both;
+  width: 100%;
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  padding: 0; /* Rimuoviamo il padding del contenitore perché lo gestiremo nel componente */
+  padding: 0;
 }

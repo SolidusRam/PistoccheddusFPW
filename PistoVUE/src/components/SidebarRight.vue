@@ -138,9 +138,8 @@
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  line-height: 45px;
   font-weight: bold;
   font-size: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);

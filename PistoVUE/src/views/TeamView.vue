@@ -44,7 +44,7 @@ const members = ref([
     id: 4,
     name: 'Laura Neri',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet est ac odio vestibulum, at finibus tortor scelerisque.',
-    photo: 'https://randomuser.me/api/portraits/lego/4.jpg'
+    photo: 'https://randomuser.me/api/portraits/men/80.jpg'
   }
 ])
 </script>
@@ -71,10 +71,11 @@ const members = ref([
 }
 
 .team-members {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.team-members > * {
+  margin-bottom: 1.5rem;
 }
 </style>

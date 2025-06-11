@@ -213,9 +213,6 @@ function changeViewMode(mode) {
   height: 100%;
   padding: 1rem;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
   background-color: rgba(255, 255, 255, 0.95);
 }
 
@@ -224,6 +221,7 @@ section {
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
 }
 
 h3 {
@@ -268,16 +266,12 @@ button.active {
 }
 
 .ingredients-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.ingredients-list label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
+.ingredients-list label input {
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .reset-filters {
@@ -292,12 +286,18 @@ button.active {
 }
 
 .view-toggles {
-  display: flex;
-  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.view-toggles::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .view-toggles button {
-  flex: 1;
+  float: left;
+  width: 50%;
 }
 
 .fun-fact {
@@ -332,9 +332,11 @@ button.active {
 }
 
 .event-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.event-list .event-item {
+  margin-bottom: 0.75rem;
 }
 
 .event-item {

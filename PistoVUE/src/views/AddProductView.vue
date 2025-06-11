@@ -59,15 +59,8 @@ h2 {
   color: #074079; /* Blu scuro istituzionale */
 }
 
-.add-product-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem; /* Spazio tra i gruppi del form */
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
+.add-product-form > * {
+  margin-bottom: 1.5rem;
 }
 
 .form-group label {
@@ -106,8 +99,8 @@ h2 {
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  align-self: center; /* Centra il bottone */
-  margin-top: 1rem;
+  display: block;
+  margin: 1rem auto 0;
 }
 
 .submit-button:hover {

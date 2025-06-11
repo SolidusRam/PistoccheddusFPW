@@ -29,14 +29,18 @@ const props = defineProps({
 
 <style scoped>
 .member-card {
-  display: flex;
-  flex-direction: column; /* Mobile first: foto sopra le info */
   margin-bottom: 2rem;
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-card::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .member-card:hover {
@@ -63,7 +67,6 @@ const props = defineProps({
 
 .member-info {
   padding: 1.5rem;
-  flex: 1;
 }
 
 .member-name {
@@ -81,14 +84,13 @@ const props = defineProps({
 /* Layout desktop: foto a fianco delle info */
 @media (min-width: 768px) {
   .member-card {
-    flex-direction: row;
     min-height: 220px;
   }
 
   .member-photo-container {
     width: 200px;
-    height: auto;
-    flex-shrink: 0;
+    height: 220px;
+    float: left;
   }
 
   .member-photo {
@@ -96,8 +98,12 @@ const props = defineProps({
   }
 
   .member-info {
-    display: flex;
-    flex-direction: column;
+    margin-left: 200px;
+    padding: 1.5rem;
+    /* Centra verticalmente il contenuto */
+    display: table-cell;
+    vertical-align: middle;
+    height: 220px;
   }
 }
 </style>

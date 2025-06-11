@@ -38,23 +38,21 @@
 
 <style scoped>
 .footer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 0.6rem 0.5rem;
   width: 100%;
   border-radius: 8px 8px 0 0;
   overflow: hidden;
   color: #ffffff;
   background-color: rgba(7, 64, 121, 0.7); /* Sfondo blu scuro più opaco */
+  text-align: center;
 }
 
 .logo-container {
   margin: 0;
   padding: 0;
   margin-right: 0.5rem;
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  vertical-align: middle;
   transition: transform 0.3s ease;
 }
 
@@ -71,9 +69,7 @@
 
 .content-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 
 .title-container {
@@ -92,33 +88,27 @@
 }
 
 .details-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  gap: 0.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 .team-contacts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 .team-members {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
+  text-align: center;
+  margin-bottom: 0.25rem;
 }
 
 .team-member {
-  display: flex;
-  align-items: center;
+  display: block;
   color: #e0e0e0;
   font-size: 0.8rem;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
   text-align: center;
+  margin-bottom: 0.25rem;
 }
 
 .team-member span {
@@ -139,22 +129,20 @@
 }
 
 .social-links {
-  display: flex;
-  align-items: center;
   padding-top: 0.2rem;
   width: 100%;
-  justify-content: center;
+  text-align: center;
 }
 
 .social-icons {
-  display: flex;
-  gap: 0.75rem;
+  text-align: center;
 }
 
 .social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1.75rem;
   width: 1.75rem;
   height: 1.75rem;
   background-color: rgba(255, 255, 255, 0.25);
@@ -166,6 +154,7 @@
   border: 1px solid rgba(255, 255, 255, 0.4);
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
   font-weight: bold;
+  margin: 0 0.375rem;
 }
 
 .social-icon:hover {
@@ -178,57 +167,64 @@
 /* Responsive: Desktop (768px and above) */
 @media (min-width: 768px) {
   .footer-container {
-    flex-direction: row;
-    justify-content: flex-start;
+    text-align: left;
     padding: 0.6rem 1.5rem;
-    align-items: center;
+  }
+  
+  .footer-container::after {
+    content: "";
+    display: table;
+    clear: both;
   }
   
   .logo-container {
+    float: left;
     margin-bottom: 0;
     margin-right: 1rem;
   }
   
   .content-container {
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    overflow: hidden;
+    text-align: left;
   }
   
   .title-container {
+    float: left;
     text-align: left;
     line-height: 1.2;
     margin-bottom: 0;
+    width: auto;
   }
   
   .details-container {
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 2rem;
+    float: right;
+    text-align: right;
+    margin-top: 0;
+    margin-left: 2rem;
   }
   
   .team-contacts {
     text-align: right;
+    margin-bottom: 0.5rem;
   }
   
   .social-links {
     border-top: none;
     padding-top: 0;
     width: auto;
+    text-align: right;
   }
 
   /* Layout orizzontale per desktop */
   .team-members {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0;
+    text-align: right;
+    margin-bottom: 0;
   }
   
   .team-member {
-    position: relative;
+    display: inline;
+    margin-bottom: 0;
+    margin-right: 0.5rem;
   }
   
   .team-member:not(:last-child)::after {

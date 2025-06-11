@@ -13,21 +13,22 @@
 
 <style scoped>
 .header-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   padding: 0.20rem;
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
 }
 
+.header-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .logo-container {
-  margin: 0;
-  padding: 0;
-  margin-right: 0.5rem;
-  display: flex;
-  align-items: center;
+  margin: 0 auto 0.5rem;
+  display: inline-block;
   transition: transform 0.3s ease;
 }
 
@@ -70,19 +71,20 @@
 /* Responsive: Desktop (768px and above) */
 @media (min-width: 768px) {
   .header-container {
-    flex-direction: row;
-    justify-content: flex-start;
+    text-align: left;
     padding: 0.75rem;
   }
   
   .logo-container {
-    margin-bottom: 0;
-    margin-right: 1.5rem;
+    float: left;
+    margin: 0 1.5rem 0 0;
   }
   
   .title-container {
+    overflow: hidden;
     text-align: left;
     line-height: 1.5;
+    padding-top: 0.5rem;
   }
   
   .site-title {

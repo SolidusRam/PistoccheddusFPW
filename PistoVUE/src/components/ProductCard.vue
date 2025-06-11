@@ -43,8 +43,6 @@ const formattedPrice = computed(() => {
 
 <style scoped>
 .product-card {
-  display: flex;
-  flex-direction: column; /* Mobile first: immagine sopra */
   border: 1px solid #eee;
   border-radius: 8px;
   overflow: hidden;
@@ -52,6 +50,12 @@ const formattedPrice = computed(() => {
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .product-card:hover {
@@ -97,26 +101,24 @@ const formattedPrice = computed(() => {
 
 /* Responsive: Desktop (768px and above) */
 @media (min-width: 768px) {
-  .product-card {
-    flex-direction: row; /* Immagine affiancata al testo */
-  }
-
   .product-image-container {
-    width: 40%; /* Larghezza immagine su desktop */
-    flex-shrink: 0; /* Impedisce all'immagine di restringersi */
+    width: 40%;
+    float: left;
   }
 
   .product-image {
-     max-height: none; /* Rimuove limite altezza su desktop */
-     height: 100%; /* Fa sì che l'immagine riempia l'altezza del contenitore */
+     max-height: none;
+     height: 200px;
   }
 
   .product-info {
-    width: 60%; /* Larghezza testo su desktop */
+    width: 60%;
+    float: right;
     padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra verticalmente il contenuto se necessario */
+    /* Centra verticalmente il contenuto */
+    display: table-cell;
+    vertical-align: middle;
+    height: 200px;
   }
 }
 </style>
