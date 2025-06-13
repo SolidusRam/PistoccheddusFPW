@@ -317,14 +317,16 @@ Ultime modifiche: giovedì, 29 maggio 2025, 15:
 
 ### 🖥️ Fase 8: Server Base e Connessione
 
-1. ⬜ **Server Node.js Semplice:**
-   - ⬜ Creare cartella `server/` nel progetto
-   - ⬜ `npm init` e installare: `express`, `pg`, `cors`
-   - ⬜ File `server.js` con connessione PostgreSQL di base
+1. ✅ **Server Node.js Semplice (COMPLETATO):**
+   - ✅ Creata cartella `server/` nel progetto
+   - ✅ `npm init` e installati: `express`, `pg`, `nodemon`
+   - ✅ File `server.js` con connessione PostgreSQL funzionante
+   - ✅ File `db.js` per configurazione database PostgreSQL
 
-2. ⬜ **Test Connessione:**
-   - ⬜ Endpoint semplice per testare connessione database
-   - ⬜ Query di prova per leggere dalle tabelle
+2. ✅ **Struttura API Organizzata (IMPLEMENTATA):**
+   - ✅ Cartelle `src/prod/` e `src/users/` seguendo pattern MVC
+   - ✅ Separazione logica: routes → controller → queries
+   - ✅ Test connessione database funzionante
 
 ### 🔐 Fase 9: Autenticazione Base
 
@@ -339,27 +341,53 @@ Ultime modifiche: giovedì, 29 maggio 2025, 15:
 
 ### 📦 Fase 10: Gestione Prodotti
 
-1. ⬜ **API Prodotti:**
-   - ⬜ `GET /prodotti` - recuperare lista dal database
-   - ⬜ `POST /prodotti` - inserire nuovo prodotto
+1. ✅ **API Prodotti (IMPLEMENTATA):**
+   - ✅ `GET /prodotti` - recupera lista completa dal database
+   - ✅ `POST /prodotti` - inserisce nuovo prodotto con validazione
+   - ✅ Struttura organizzata: prod_routes → prod_controller → prod_queries
 
-2. ⬜ **Frontend Aggiornato:**
+2. ✅ **API Utenti (IMPLEMENTATA):**
+   - ✅ `GET /utenti` - recupera lista completa utenti dal database
+   - ✅ `POST /utenti` - inserisce nuovo utente con timestamp automatico
+   - ✅ Struttura organizzata: user_routes → user_controller → user_queries
+
+3. ⬜ **Frontend Aggiornato:**
    - ⬜ `ProductsView.vue` carica prodotti da API invece di dati statici
    - ⬜ `AddProductView.vue` invia dati al server
    - ⬜ Immagine `placeholder.jpg` per prodotti senza foto
 
 ### 🔧 Fase 11: Dump e Finalizzazione
 
-1. ⬜ **Database Dump (OBBLIGATORIO):**
-   - ⬜ Creare backup con pgAdmin (Export > Custom format)
-   - ⬜ Testare import del dump per verifica
-   - ⬜ File `pistoccheddus_dump.sql` per consegna
+1. ✅ **Database Dump (COMPLETATO):**
+   - ✅ Creato backup.sql con pgAdmin (Custom format)
+   - ✅ Database con dati team e prodotti già popolato
+   - ✅ File `database/backup.sql` pronto per consegna
 
-2. ⬜ **Test Finale:**
-   - ⬜ Login con dati team funzionante
-   - ⬜ Registrazione nuovo utente funzionante  
-   - ⬜ Visualizzazione prodotti da database
-   - ⬜ Inserimento nuovo prodotto funzionante
+2. ⬜ **Test Finale API:**
+   - ✅ Server funzionante su http://localhost:3000
+   - ✅ Connessione database PostgreSQL operativa
+   - ✅ API GET/POST prodotti e utenti testate
+   - ⬜ Frontend collegato alle API reali
+
+---
+
+## 🚀 STATO ATTUALE PROGETTO (Aggiornato al 13/06/2025)
+
+### ✅ COMPLETATO:
+- **Frontend Vue.js:** Layout completo, tutte le 5 pagine, componenti modulari
+- **Database PostgreSQL:** Struttura completa, dati popolati, backup funzionante
+- **Server Node.js:** API complete per prodotti e utenti, struttura MVC organizzata
+- **Integrazione Backend:** Server ↔ Database completamente funzionante
+
+### 🔄 IN SVILUPPO:
+- **Collegamento Frontend-Backend:** Sostituire dati statici con chiamate API
+- **Autenticazione:** Implementare login/registrazione reali con sessioni
+
+### 📋 PROSSIMI STEP:
+1. **Collegare ProductsView alle API** (sostituire dati mock)
+2. **Collegare AddProductView alle API** (form funzionanti)
+3. **Implementare autenticazione completa** (Modulo 3)
+4. **Aggiungere validazione frontend** (Modulo 4)
 
 ---
 
@@ -468,20 +496,53 @@ PistoVUE/
 ## Backend (Node.js) - server/
 ```
 server/
-├── server.js            # Server Express principale
-├── package.json
-├── config/
-│   └── database.js      # Connessione PostgreSQL
-├── routes/
-│   ├── auth.js          # API login/registrazione
-│   └── products.js      # API prodotti
-├── public/
-│   └── images/
-│       └── placeholder.jpg
-└── sql/
-    ├── create_tables.sql
-    ├── insert_data.sql
-    └── pistoccheddus_dump.sql
+├── server.js            # ✅ Server Express principale con tutte le route
+├── package.json         # ✅ Dipendenze: express, pg, nodemon
+├── db.js               # ✅ Configurazione connessione PostgreSQL
+├── src/
+│   ├── prod/           # ✅ Modulo Prodotti (Pattern MVC)
+│   │   ├── prod_routes.js     # ✅ Route: GET/POST /prodotti
+│   │   ├── prod_controller.js # ✅ Logica business + gestione errori
+│   │   └── prod_queries.js    # ✅ Query SQL per prodotti
+│   └── users/          # ✅ Modulo Utenti (Pattern MVC)
+│       ├── user_routes.js     # ✅ Route: GET/POST /utenti
+│       ├── user_controller.js # ✅ Logica business + gestione errori
+│       └── user_queries.js    # ✅ Query SQL per utenti
+└── public/
+    └── images/
+        └── placeholder.jpg
+```
+
+### 📡 API Endpoints Implementati
+
+**Server Base:**
+- `GET /` - Homepage server con messaggio benvenuto
+
+**Gestione Prodotti:**
+- `GET /prodotti` - Recupera tutti i prodotti dal database
+- `POST /prodotti` - Inserisce nuovo prodotto (richiede `origine_ricetta` nel body)
+
+**Gestione Utenti:**
+- `GET /utenti` - Recupera tutti gli utenti dal database  
+- `POST /utenti` - Inserisce nuovo utente (con `data_registrazione` automatica)
+
+**Esempio chiamate API:**
+```bash
+# Visualizza tutti i prodotti
+GET http://localhost:3000/prodotti
+
+# Visualizza tutti gli utenti
+GET http://localhost:3000/utenti
+
+# Crea nuovo prodotto
+POST http://localhost:3000/prodotti
+Content-Type: application/json
+{
+  "origine_ricetta": "Sassari"
+}
+
+# Crea nuovo utente
+POST http://localhost:3000/utenti
 ```
 
 ## Database PostgreSQL - database/
