@@ -18,7 +18,7 @@ Ultime modifiche: giovedì, 29 maggio 2025, 15:
 
 ---
 
-## 📋 Roadmap di Sviluppopopolato (funzione backup). Per agevolare la correzione dei progetti vi chiediamo di verificare che l'importazione del vostro dump vada a buon fine utilizzando l'interfaccia utente di pgAdmin. 
+## 📋 Roadmap di Sviluppo popolato (funzione backup). Per agevolare la correzione dei progetti vi chiediamo di verificare che l'importazione del vostro dump vada a buon fine utilizzando l'interfaccia utente di pgAdmin. 
 Ultime modifiche: giovedì, 29 maggio 2025, 15:
 
 ---
