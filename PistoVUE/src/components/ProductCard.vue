@@ -1,44 +1,56 @@
 <template>
   <div class="product-card">
     <div class="product-image-container">
-      <img :src="imageSrc" :alt="title" class="product-image">
+      <img :src="imageUrl" :alt="title" class="product-image">
     </div>
     <div class="product-info">
       <h3 class="product-title">{{ title }}</h3>
       <p class="product-description">{{ description }}</p>
       <p class="product-price">{{ formattedPrice }}</p>
-      <!-- Aggiungere qui altri campi se necessario -->
+      <p class="product-origin" v-if="origine_ricetta">Origine: {{ origine_ricetta }}</p>
     </div>
   </div>
 </template>
 
-<script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
-  title: {
-    type: String,
-    required: true
+<script>
+export default {
+  name: 'ProductCard',
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    imageSrc: {
+      type: String,
+      required: true
+    },
+    origine_ricetta: {
+      type: String,
+      required: false
+    }
   },
-  description: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  imageSrc: {
-    type: String,
-    required: true
+  computed: {
+    formattedPrice() {
+      // Il prezzo dal database arriva in centesimi, dividiamo per 100
+      return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(this.price / 100)
+    },
+    imageUrl() {
+      // Se l'immagine è placeholder.jpg, usiamo un'immagine di fallback
+      if (this.imageSrc === 'placeholder.jpg' || !this.imageSrc) {
+        return 'https://via.placeholder.com/300x200/074079/ffffff?text=Dolce+Sardo'
+      }
+      return this.imageSrc
+    }
   }
-  // Aggiungere qui altre props se necessario
-})
-
-// Formatta il prezzo come valuta
-const formattedPrice = computed(() => {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(props.price)
-})
+}
 </script>
 
 <style scoped>
@@ -97,6 +109,13 @@ const formattedPrice = computed(() => {
   font-size: 1.1rem;
   font-weight: bold;
   color: #333;
+}
+
+.product-origin {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 0.5rem;
 }
 
 /* Responsive: Desktop (768px and above) */
