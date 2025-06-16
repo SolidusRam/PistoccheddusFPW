@@ -43,11 +43,12 @@ export default {
       return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(this.price / 100)
     },
     imageUrl() {
-      // Se l'immagine è placeholder.jpg, usiamo un'immagine di fallback
+      // Se l'immagine è placeholder.jpg o non esiste, usiamo un'immagine di fallback
       if (this.imageSrc === 'placeholder.jpg' || !this.imageSrc) {
         return 'https://via.placeholder.com/300x200/074079/ffffff?text=Dolce+Sardo'
       }
-      return this.imageSrc
+      // Usa import dinamico per le immagini con Vite
+      return new URL(`../assets/${this.imageSrc}`, import.meta.url).href
     }
   }
 }

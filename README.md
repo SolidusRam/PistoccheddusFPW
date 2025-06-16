@@ -301,6 +301,13 @@ Ultime modifiche: giovedì, 29 maggio 2025, 15:
    );
    ```
 
+4. ⬜ **File Backup:**
+   - ⬜ Creare file `backup.sql` con pgAdmin (Custom format)
+   - ⬜ Verificare che il dump contenga dati di esempio per team e prodotti
+5. ⬜ **Screenshot Struttura Database:**
+
+
+
 ### 📊 Fase 7: Database - Popolamento Dati
 
 1. ✅ **Dati Team (COMPLETATO):**

@@ -4,6 +4,7 @@ import ProductsView from '@/views/ProductsView.vue'
 import AddProductView from '@/views/AddProductView.vue'
 import TeamView from '../views/TeamView.vue'
 import AuthView from '../views/AuthView.vue'
+import { requireAuth } from '@/utils/routeGuards'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,16 +17,14 @@ const router = createRouter({
     {
       path: '/prodotti',
       name: 'products',
-      component: ProductsView
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import('../views/ProductsView.vue') // Alternative: Lazy Loading
+      component: ProductsView,
+      beforeEnter: requireAuth
     },
     {
       path: '/aggiungi-prodotto',
       name: 'add-product',
-      component: AddProductView
+      component: AddProductView,
+      beforeEnter: requireAuth
     },
     {
       path: '/chi-siamo',
@@ -33,7 +32,7 @@ const router = createRouter({
       component: TeamView
     },
     {
-      path: '/login', // Separazione di login e registrazione???
+      path: '/login',
       name: 'auth',
       component: AuthView
     }

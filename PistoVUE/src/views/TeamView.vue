@@ -5,48 +5,65 @@
     <p class="team-intro">Conosciamo i membri del team che rendono possibile Pistoccheddus e portano avanti la tradizione della pasticceria sarda.</p>
     
     <div class="team-members">
+      <div v-if="error" class="error">{{ error }}</div>
       <MemberCard
+        v-else
         v-for="member in members"
         :key="member.id"
-        :photo="member.photo"
-        :name="member.name"
-        :description="member.description"
+        :name="`${member.nome} ${member.cognome}`"
+        :description="`Membro del team da ${member.citta}. Registrato il ${formatDate(member.data_registrazione)}`"
+        :photo="getDefaultPhoto(member.id)"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import MemberCard from '@/components/MemberCard.vue'
+import { getAllUsers } from '@/utils/apis.js'
 
-// Dati dei membri del team
-const members = ref([
-  {
-    id: 1,
-    name: 'Mario Rossi',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in velit nec magna hendrerit pretium eget non erat.',
-    photo: 'https://randomuser.me/api/portraits/men/83.jpg'
-  },
-  {
-    id: 2,
-    name: 'Anna Bianchi',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed vel nisi ut magna fermentum tincidunt.',
-    photo: 'https://randomuser.me/api/portraits/lego/2.jpg'
-  },
-  {
-    id: 3,
-    name: 'Giuseppe Verdi',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, nunc in scelerisque vehicula, orci sem feugiat urna.',
-    photo: 'https://randomuser.me/api/portraits/lego/3.jpg'
-  },
-  {
-    id: 4,
-    name: 'Laura Neri',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet est ac odio vestibulum, at finibus tortor scelerisque.',
-    photo: 'https://randomuser.me/api/portraits/men/80.jpg'
+// Dati dei membri del team dal database
+const members = ref([])
+const error = ref(null)
+
+// Funzione per caricare i membri del team
+const fetchMembers = async () => {
+  try {
+    error.value = null
+    members.value = await getAllUsers()
+  } catch (err) {
+    console.error('Errore nel caricamento dei membri del team:', err)
+    error.value = 'Errore nel caricamento dei membri del team. Riprova più tardi.'
   }
-])
+}
+
+// Funzione per formattare la data
+const formatDate = (dateString) => {
+  if (!dateString) return 'Data non disponibile'
+  const date = new Date(dateString)
+  return date.toLocaleDateString('it-IT', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+
+// Funzione per ottenere foto di default
+const getDefaultPhoto = (id) => {
+  const photos = [
+    'https://randomuser.me/api/portraits/men/83.jpg',
+    'https://randomuser.me/api/portraits/women/44.jpg',
+    'https://randomuser.me/api/portraits/men/80.jpg',
+    'https://randomuser.me/api/portraits/women/65.jpg',
+    'https://randomuser.me/api/portraits/men/32.jpg'
+  ]
+  return photos[(id - 1) % photos.length] || photos[0]
+}
+
+onMounted(() => {
+  fetchMembers()
+})
 </script>
 
 <style scoped>
@@ -77,5 +94,15 @@ const members = ref([
 
 .team-members > * {
   margin-bottom: 1.5rem;
+}
+
+.error {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #d32f2f;
+  padding: 2rem;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 1rem 0;
 }
 </style>

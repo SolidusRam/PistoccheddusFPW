@@ -5,7 +5,7 @@
     <!-- Prima pubblicità -->
     <div class="ad-box">
       <div class="ad-content">
-        <img src="@/assets/pardula.jpeg" alt="Corso di pasticceria sarda" class="ad-image">
+        <img src="@/assets/pardula.jpg" alt="Corso di pasticceria sarda" class="ad-image">
         <h4 class="ad-heading">Corso di Pasticceria Sarda</h4>
         <p class="ad-text">Impara i segreti delle pardulas tradizionali!</p>
         <a href="#" class="ad-button">Scopri di più</a>
@@ -15,7 +15,7 @@
     <!-- Seconda pubblicità -->
     <div class="ad-box">
       <div class="ad-content">
-        <img src="@/assets/seadas.jpeg" alt="Ingredienti tipici sardi" class="ad-image">
+        <img src="@/assets/seadas.jpg" alt="Ingredienti tipici sardi" class="ad-image">
         <h4 class="ad-heading">Ingredienti Premium</h4>
         <p class="ad-text">Formaggio e miele sardo per le tue seadas!</p>
         <a href="#" class="ad-button">Acquista ora</a>

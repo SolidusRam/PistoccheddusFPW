@@ -1,157 +1,269 @@
 <template>
   <div class="auth-view">
-    <h2 class="auth-title">{{ isLogin ? 'Accedi' : 'Registrati' }}</h2>
-    
-    <div class="auth-container">
+    <!-- Vista per utente NON autenticato -->
+    <div v-if="!sessionStore.isAuthenticated" class="auth-container">
+      <h2 class="auth-title">Accedi</h2>
+      
+      <!-- Messaggi di errore -->
+      <div v-if="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      
       <!-- Form di Login -->
-      <form v-if="isLogin" class="auth-form" @submit.prevent="handleLogin">
+      <form class="auth-form" @submit.prevent="handleLogin">
         <div class="form-group">
-          <label for="login-email">Email</label>
+          <label for="username">Username</label>
           <input 
-            type="email" 
-            id="login-email" 
-            v-model="loginForm.email" 
-            placeholder="Inserisci la tua email"
+            type="text"
+            name="username"
+            id="username"
+            v-model="loginForm.username"
+            placeholder="Inserisci il tuo username"
             required
+            :disabled="isLoading"
           >
         </div>
         
         <div class="form-group">
-          <label for="login-password">Password</label>
+          <label for="password">Password</label>
           <input 
             type="password" 
-            id="login-password" 
-            v-model="loginForm.password" 
+            name="password"
+            id="password"
+            v-model="loginForm.password"
             placeholder="Inserisci la tua password"
             required
+            :disabled="isLoading"
           >
         </div>
         
-        <div class="form-group remember-me">
-          <input type="checkbox" id="remember-me" v-model="loginForm.rememberMe">
-          <label for="remember-me">Ricordami</label>
-        </div>
-        
-        <button type="submit" class="auth-button">Accedi</button>
-        
-        <div class="auth-links">
-          <p>Non hai ancora un account? <a href="#" @click.prevent="toggleAuthMode">Registrati</a></p>
-        </div>
+        <button type="submit" class="auth-button" :disabled="isLoading">
+          {{ isLoading ? 'Accesso in corso...' : 'Accedi' }}
+        </button>
       </form>
+    </div>
+
+    <!-- Vista per utente AUTENTICATO -->
+    <div v-else class="user-profile">
+      <h2 class="auth-title">Benvenuto!</h2>
       
-      <!-- Form di Registrazione -->
-      <form v-else class="auth-form" @submit.prevent="handleRegister">
-        <div class="form-group">
-          <label for="register-name">Nome</label>
-          <input 
-            type="text" 
-            id="register-name" 
-            v-model="registerForm.name" 
-            placeholder="Inserisci il tuo nome"
-            required
-          >
+      <div class="user-info">
+        <h3>I tuoi dati</h3>
+        <div class="user-details">
+          <p><strong>Nome:</strong> {{ sessionStore.user.nome }}</p>
+          <p><strong>Cognome:</strong> {{ sessionStore.user.cognome }}</p>
+          <p><strong>Username:</strong> {{ sessionStore.user.username }}</p>
+          <p><strong>Email:</strong> {{ sessionStore.user.email }}</p>
+          <p><strong>Città:</strong> {{ sessionStore.user.citta }}</p>
+          <p><strong>Registrato il:</strong> {{ formatDate(sessionStore.user.data_registrazione) }}</p>
         </div>
-        
-        <div class="form-group">
-          <label for="register-surname">Cognome</label>
-          <input 
-            type="text" 
-            id="register-surname" 
-            v-model="registerForm.surname" 
-            placeholder="Inserisci il tuo cognome"
-            required
-          >
+
+        <!-- Sezione cambio password -->
+        <div class="password-section">
+          <p class="change-password-link" @click="togglePasswordChange">
+            {{ showPasswordChange ? 'Nascondi cambio password' : 'Cambio password' }}
+          </p>
+          
+          <div v-show="showPasswordChange" class="password-change-form">
+            <div v-if="passwordMessage" class="password-message" :class="passwordMessageType">
+              {{ passwordMessage }}
+            </div>
+            
+            <form @submit.prevent="handlePasswordChange">
+              <div class="form-group">
+                <label for="oldPassword">Vecchia password</label>
+                <input 
+                  type="password"
+                  id="oldPassword"
+                  v-model="passwordForm.oldPassword"
+                  placeholder="Inserisci la vecchia password"
+                  required
+                  :disabled="isPasswordLoading"
+                >
+              </div>
+              
+              <div class="form-group">
+                <label for="newPassword">Nuova password</label>
+                <input 
+                  type="password"
+                  id="newPassword"
+                  v-model="passwordForm.newPassword"
+                  placeholder="Inserisci la nuova password"
+                  required
+                  :disabled="isPasswordLoading"
+                >
+              </div>
+              
+              <div class="form-group">
+                <label for="confirmPassword">Conferma nuova password</label>
+                <input 
+                  type="password"
+                  id="confirmPassword"
+                  v-model="passwordForm.confirmPassword"
+                  placeholder="Conferma la nuova password"
+                  required
+                  :disabled="isPasswordLoading"
+                >
+              </div>
+              
+              <button type="submit" class="auth-button" :disabled="isPasswordLoading || !isPasswordFormValid">
+                {{ isPasswordLoading ? 'Cambiando...' : 'Cambia Password' }}
+              </button>
+            </form>
+          </div>
         </div>
-        
-        <div class="form-group">
-          <label for="register-email">Email</label>
-          <input 
-            type="email" 
-            id="register-email" 
-            v-model="registerForm.email" 
-            placeholder="Inserisci la tua email"
-            required
-          >
-        </div>
-        
-        <div class="form-group">
-          <label for="register-password">Password</label>
-          <input 
-            type="password" 
-            id="register-password" 
-            v-model="registerForm.password" 
-            placeholder="Crea una password"
-            required
-          >
-        </div>
-        
-        <div class="form-group">
-          <label for="register-password-confirm">Conferma Password</label>
-          <input 
-            type="password" 
-            id="register-password-confirm" 
-            v-model="registerForm.passwordConfirm" 
-            placeholder="Conferma la tua password"
-            required
-          >
-        </div>
-        
-        <div class="form-group accept-terms">
-          <input type="checkbox" id="accept-terms" v-model="registerForm.acceptTerms" required>
-          <label for="accept-terms">Accetto i <a href="#" class="terms-link">Termini e Condizioni</a></label>
-        </div>
-        
-        <button type="submit" class="auth-button">Registrati</button>
-        
-        <div class="auth-links">
-          <p>Hai già un account? <a href="#" @click.prevent="toggleAuthMode">Accedi</a></p>
-        </div>
-      </form>
+
+        <!-- Pulsante logout -->
+        <button @click="handleLogout" class="logout-button" :disabled="isLoading">
+          {{ isLoading ? 'Disconnessione...' : 'Logout' }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useSessionStore } from '@/stores/session'
+import * as Auth from '@/utils/auth.js'
 
-// Stato per controllare se siamo in modalità login o registrazione
-const isLogin = ref(true);
+const router = useRouter()
+const sessionStore = useSessionStore()
 
-// Form data per login
+// Form data
 const loginForm = ref({
-  email: '',
-  password: '',
-  rememberMe: false
-});
+  username: '',
+  password: ''
+})
 
-// Form data per registrazione
-const registerForm = ref({
-  name: '',
-  surname: '',
-  email: '',
-  password: '',
-  passwordConfirm: '',
-  acceptTerms: false
-});
+const passwordForm = ref({
+  oldPassword: '',
+  newPassword: '',
+  confirmPassword: ''
+})
 
-// Funzione per passare da login a registrazione e viceversa
-const toggleAuthMode = () => {
-  isLogin.value = !isLogin.value;
-};
+// UI state
+const isLoading = ref(false)
+const isPasswordLoading = ref(false)
+const errorMessage = ref('')
+const passwordMessage = ref('')
+const passwordMessageType = ref('error')
+const showPasswordChange = ref(false)
 
-// Funzione per gestire il login (non funzionante)
-const handleLogin = () => {
-  // In un'applicazione reale, qui ci sarebbe la logica di autenticazione
-  console.log('Login con:', loginForm.value);
-  alert('Funzionalità di login non ancora implementata');
-};
+// Computed properties
+const isPasswordFormValid = computed(() => {
+  return passwordForm.value.oldPassword && 
+         passwordForm.value.newPassword && 
+         passwordForm.value.confirmPassword &&
+         passwordForm.value.newPassword === passwordForm.value.confirmPassword &&
+         passwordForm.value.newPassword !== passwordForm.value.oldPassword
+})
 
-// Funzione per gestire la registrazione (non funzionante)
-const handleRegister = () => {
-  // In un'applicazione reale, qui ci sarebbe la logica di registrazione
-  console.log('Registrazione con:', registerForm.value);
-  alert('Funzionalità di registrazione non ancora implementata');
-};
+// Methods
+const handleLogin = async () => {
+  if (isLoading.value) return
+  
+  isLoading.value = true
+  errorMessage.value = ''
+  
+  try {
+    const response = await Auth.login(loginForm.value.username, loginForm.value.password)
+    
+    if (response.success && response.user) {
+      sessionStore.setUser(response.user)
+      router.push('/')
+    } else {
+      errorMessage.value = 'Errore durante il login'
+    }
+  } catch (error) {
+    console.error('Errore durante il login:', error)
+    errorMessage.value = error.message || 'Errore durante il login'
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const handleLogout = async () => {
+  if (isLoading.value) return
+  
+  isLoading.value = true
+  
+  try {
+    await Auth.logout()
+    sessionStore.clearSession()
+    router.push('/')
+  } catch (error) {
+    console.error('Errore durante il logout:', error)
+    // Anche in caso di errore, pulisci la sessione locale
+    sessionStore.clearSession()
+    router.push('/')
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const togglePasswordChange = () => {
+  showPasswordChange.value = !showPasswordChange.value
+  if (!showPasswordChange.value) {
+    // Reset form when hiding
+    passwordForm.value = {
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    }
+    passwordMessage.value = ''
+  }
+}
+
+const handlePasswordChange = async () => {
+  if (isPasswordLoading.value || !isPasswordFormValid.value) return
+  
+  isPasswordLoading.value = true
+  passwordMessage.value = ''
+  
+  try {
+    await Auth.changePassword(passwordForm.value.oldPassword, passwordForm.value.newPassword)
+    passwordMessage.value = 'Password cambiata con successo!'
+    passwordMessageType.value = 'success'
+    
+    // Reset form
+    passwordForm.value = {
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    }
+    
+    // Hide form after success
+    setTimeout(() => {
+      showPasswordChange.value = false
+      passwordMessage.value = ''
+    }, 2000)
+    
+  } catch (error) {
+    console.error('Errore durante il cambio password:', error)
+    passwordMessage.value = error.message || 'Errore durante il cambio password'
+    passwordMessageType.value = 'error'
+  } finally {
+    isPasswordLoading.value = false
+  }
+}
+
+const formatDate = (dateString) => {
+  if (!dateString) return 'Data non disponibile'
+  const date = new Date(dateString)
+  return date.toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  })
+}
+
+// Lifecycle
+onMounted(() => {
+  // Carica dati utente dal localStorage se disponibili
+  sessionStore.loadFromStorage()
+})
 </script>
 
 <style scoped>
@@ -189,6 +301,7 @@ const handleRegister = () => {
 }
 
 .form-group label {
+  display: block;
   margin-bottom: 0.5rem;
   color: #333;
   font-weight: bold;
@@ -197,17 +310,24 @@ const handleRegister = () => {
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
+  width: 100%;
   padding: 0.8rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.3s;
+  box-sizing: border-box;
 }
 
 .form-group input:focus {
   border-color: #074079;
   outline: none;
   box-shadow: 0 0 0 2px rgba(7, 64, 121, 0.2);
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
 }
 
 .remember-me,
@@ -228,6 +348,7 @@ const handleRegister = () => {
 }
 
 .auth-button {
+  width: 100%;
   background-color: #074079;
   color: white;
   border: none;
@@ -244,34 +365,118 @@ const handleRegister = () => {
   background-color: #053260;
 }
 
-.auth-links {
+.auth-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #d32f2f;
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #ffcdd2;
+}
+
+/* User Profile Styles */
+.user-profile {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  text-align: left;
+}
+
+.user-info h3 {
+  color: #074079;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.user-details {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.user-details p {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.user-details strong {
+  color: #074079;
+}
+
+/* Password Change Section */
+.password-section {
+  margin: 1.5rem 0;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.change-password-link {
+  color: #074079;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.change-password-link:hover {
+  color: #052d5a;
+}
+
+.password-change-form {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
   margin-top: 1rem;
-  text-align: center;
-  color: #555;
 }
 
-.auth-links p {
-  margin-bottom: 0.8rem;
+.password-message {
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
 }
 
-.auth-links a {
-  color: #074079;
-  text-decoration: none;
-  transition: color 0.3s;
+.password-message.error {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ffcdd2;
 }
 
-.auth-links a:hover {
-  color: #053260;
-  text-decoration: underline;
+.password-message.success {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
 }
 
-.forgot-password {
-  align-self: flex-start;
+.logout-button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
 }
 
-.terms-link {
-  color: #074079;
-  text-decoration: underline;
+.logout-button:hover:not(:disabled) {
+  background-color: #b71c1c;
+}
+
+.logout-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 @media (max-width: 767px) {
@@ -286,6 +491,10 @@ const handleRegister = () => {
   
   .form-group input {
     padding: 0.7rem;
+  }
+  
+  .user-profile {
+    padding: 1rem;
   }
 }
 </style>

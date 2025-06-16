@@ -20,6 +20,7 @@
 
 <script>
 import ProductCard from '@/components/ProductCard.vue'
+import { getAllProds } from '@/utils/apis.js'
 
 export default {
   name: 'ProductsView',
@@ -40,13 +41,8 @@ export default {
       try {
         this.error = null
         
-        const response = await fetch('/api/prodotti')
+        this.products = await getAllProds()
         
-        if (!response.ok) {
-          throw new Error(`Errore HTTP: ${response.status}`)
-        }
-        
-        this.products = await response.json()
       } catch (error) {
         console.error('Errore nel caricamento dei prodotti:', error)
         this.error = 'Errore nel caricamento dei prodotti. Riprova più tardi.'
