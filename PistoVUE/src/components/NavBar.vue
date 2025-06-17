@@ -5,13 +5,29 @@
       <RouterLink to="/prodotti" class="nav-link" title="Prodotti">Prodotti</RouterLink>
       <RouterLink to="/aggiungi-prodotto" class="nav-link" title="Aggiungi Prodotto">Aggiungi Prodotto</RouterLink>
       <RouterLink to="/chi-siamo" class="nav-link" title="Chi Siamo">Chi Siamo</RouterLink>
-      <RouterLink to="/login" class="nav-link" title="Login">Login</RouterLink>
+      <RouterLink 
+        to="/login" 
+        class="nav-link" 
+        :class="{ 'highlight-login': shouldHighlightLogin }"
+        title="Login">
+        Login
+      </RouterLink>
     </nav>
   </div>
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
+import { computed } from 'vue'
+import { useSessionStore } from '@/stores/session'
+
+const route = useRoute()
+const sessionStore = useSessionStore()
+
+// Computed per determinare se evidenziare il pulsante login
+const shouldHighlightLogin = computed(() => {
+  return route.name === 'auth' && sessionStore.showAuthRedirect
+})
 </script>
 
 <style scoped>
@@ -78,6 +94,32 @@ import { RouterLink } from 'vue-router'
   visibility: hidden;
   overflow: hidden;
   font-weight: bold;
+}
+
+
+
+/* Stili per l'evidenziazione quando l'utente viene reindirizzato */
+.nav-link.highlight-login {
+  background-color: rgba(220, 53, 69, 0.9) !important;
+  color: white !important;
+  /* border: 2px solid #dc3545; */
+  animation: pulseRed 1.5s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
+}
+
+@keyframes pulseRed {
+  0% {
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
+    background-color: rgba(220, 53, 69, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(220, 53, 69, 1);
+    background-color: rgba(220, 53, 69, 1);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
+    background-color: rgba(220, 53, 69, 0.9);
+  }
 }
 
 /* Media query per desktop (768px and above) */

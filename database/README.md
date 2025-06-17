@@ -19,7 +19,8 @@
    psql -U postgres -d pistoccheddus -f backup.sql
    
    # Oppure da pgAdmin: 
-   # Tasto destro su database > Restore > Seleziona backup.sql > Restore
+   # Tasto destro su database > Restore > Seleziona backup.sql > Restore 
+   NB. selezionare come tipo di file "SQL"
    ```
 
 3. **Verifica installazione:**

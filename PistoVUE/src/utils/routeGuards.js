@@ -11,7 +11,9 @@ export const requireAuth = (to, from, next) => {
   if (sessionStore.isLogged()) {
     next() // User is authenticated, allow access
   } else {
-    next('/login') // Redirect to login page
+    // Trigger the highlight effect in the store
+    sessionStore.triggerAuthRedirect()
+    next('/login')
   }
 }
 

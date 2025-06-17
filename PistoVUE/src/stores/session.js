@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 export const useSessionStore = defineStore('session', () => {
     const user = ref(null);
     const isAuthenticated = ref(false);
+    const showAuthRedirect = ref(false); // Nuovo stato per l'evidenziazione
     
     function setUser(userData) {
         user.value = userData;
@@ -49,13 +50,24 @@ export const useSessionStore = defineStore('session', () => {
         return isAuthenticated.value;
     }
 
+    // Nuova funzione per gestire l'evidenziazione
+    function triggerAuthRedirect() {
+        showAuthRedirect.value = true;
+        // Auto-reset dopo 2 secondi
+        setTimeout(() => {
+            showAuthRedirect.value = false;
+        }, 2000);
+    }
+
     return { 
         user, 
         isAuthenticated,
+        showAuthRedirect,
         setUser, 
         getUser, 
         clearSession,
         loadFromStorage,
-        isLogged
+        isLogged,
+        triggerAuthRedirect
     }
 })
