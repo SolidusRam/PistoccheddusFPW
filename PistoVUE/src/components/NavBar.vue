@@ -9,8 +9,8 @@
         to="/login" 
         class="nav-link" 
         :class="{ 'highlight-login': shouldHighlightLogin }"
-        title="Login">
-        Login
+        :title="sessionStore.isAuthenticated ? 'Profilo' : 'Login'">
+        {{ sessionStore.isAuthenticated ? 'Profilo' : 'Login' }}
       </RouterLink>
     </nav>
   </div>

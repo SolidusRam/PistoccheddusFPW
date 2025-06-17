@@ -2,15 +2,36 @@
   <div class="auth-view">
     <!-- Vista per utente NON autenticato -->
     <div v-if="!sessionStore.isAuthenticated" class="auth-container">
-      <h2 class="auth-title">Accedi</h2>
+      <h2 class="auth-title">{{ showRegister ? 'Registrati' : 'Accedi' }}</h2>
+      
+      <!-- Toggle tra Login e Registrazione -->
+      <div class="auth-toggle">
+        <button 
+          @click="showRegister = false" 
+          :class="{ active: !showRegister }"
+          class="toggle-button">
+          Login
+        </button>
+        <button 
+          @click="showRegister = true" 
+          :class="{ active: showRegister }"
+          class="toggle-button">
+          Registrati
+        </button>
+      </div>
       
       <!-- Messaggi di errore -->
       <div v-if="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
       
+      <!-- Messaggi di successo -->
+      <div v-if="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+      
       <!-- Form di Login -->
-      <form class="auth-form" @submit.prevent="handleLogin">
+      <form v-if="!showRegister" class="auth-form" @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="username">Username</label>
           <input 
@@ -39,6 +60,102 @@
         
         <button type="submit" class="auth-button" :disabled="isLoading">
           {{ isLoading ? 'Accesso in corso...' : 'Accedi' }}
+        </button>
+      </form>
+
+      <!-- Form di Registrazione -->
+      <form v-else class="auth-form" @submit.prevent="handleRegister">
+        <div class="form-group">
+          <label for="reg-nome">Nome</label>
+          <input 
+            type="text"
+            id="reg-nome"
+            v-model="registerForm.nome"
+            placeholder="Inserisci il tuo nome"
+            required
+            :disabled="isRegisterLoading"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="reg-cognome">Cognome</label>
+          <input 
+            type="text"
+            id="reg-cognome"
+            v-model="registerForm.cognome"
+            placeholder="Inserisci il tuo cognome"
+            required
+            :disabled="isRegisterLoading"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="reg-username">Username</label>
+          <input 
+            type="text"
+            id="reg-username"
+            v-model="registerForm.username"
+            placeholder="Scegli un username"
+            required
+            :disabled="isRegisterLoading"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="reg-email">Email</label>
+          <input 
+            type="email"
+            id="reg-email"
+            v-model="registerForm.email"
+            placeholder="Inserisci la tua email"
+            required
+            :disabled="isRegisterLoading"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input 
+            type="password"
+            id="reg-password"
+            v-model="registerForm.password"
+            placeholder="Scegli una password (minimo 5 caratteri)"
+            required
+            :disabled="isRegisterLoading"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="reg-confirm-password">Conferma Password</label>
+          <input 
+            type="password"
+            id="reg-confirm-password"
+            v-model="registerForm.confirmPassword"
+            placeholder="Conferma la password"
+            required
+            :disabled="isRegisterLoading"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="reg-citta">Città</label>
+          <input 
+            type="text"
+            id="reg-citta"
+            v-model="registerForm.citta"
+            placeholder="Inserisci la tua città"
+            required
+            :disabled="isRegisterLoading"
+          >
+        </div>
+        
+        <!-- Messaggio di validazione per la registrazione -->
+        <div v-if="hasRegisterValidationError" class="validation-error">
+          {{ registerValidationMessage }}
+        </div>
+        
+        <button type="submit" class="auth-button" :disabled="isRegisterLoading || !isRegisterFormValid || hasRegisterValidationError">
+          {{ isRegisterLoading ? 'Registrazione in corso...' : 'Registrati' }}
         </button>
       </form>
     </div>
@@ -106,7 +223,12 @@
                 >
               </div>
               
-              <button type="submit" class="auth-button" :disabled="isPasswordLoading || !isPasswordFormValid">
+              <!-- Messaggio di validazione -->
+              <div v-if="hasPasswordValidationError" class="validation-error">
+                {{ passwordValidationMessage }}
+              </div>
+              
+              <button type="submit" class="auth-button" :disabled="isPasswordLoading || !isPasswordFormValid || hasPasswordValidationError">
                 {{ isPasswordLoading ? 'Cambiando...' : 'Cambia Password' }}
               </button>
             </form>
@@ -137,6 +259,16 @@ const loginForm = ref({
   password: ''
 })
 
+const registerForm = ref({
+  nome: '',
+  cognome: '',
+  username: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  citta: ''
+})
+
 const passwordForm = ref({
   oldPassword: '',
   newPassword: '',
@@ -145,19 +277,87 @@ const passwordForm = ref({
 
 // UI state
 const isLoading = ref(false)
+const isRegisterLoading = ref(false)
 const isPasswordLoading = ref(false)
 const errorMessage = ref('')
+const successMessage = ref('')
 const passwordMessage = ref('')
 const passwordMessageType = ref('error')
 const showPasswordChange = ref(false)
+const showRegister = ref(false)
 
 // Computed properties
 const isPasswordFormValid = computed(() => {
   return passwordForm.value.oldPassword && 
          passwordForm.value.newPassword && 
+         passwordForm.value.newPassword.length >= 5 &&
          passwordForm.value.confirmPassword &&
          passwordForm.value.newPassword === passwordForm.value.confirmPassword &&
          passwordForm.value.newPassword !== passwordForm.value.oldPassword
+})
+
+// Computed properties per la validazione del form password
+const passwordValidationMessage = computed(() => {
+  if (!passwordForm.value.newPassword && !passwordForm.value.confirmPassword) {
+    return ''
+  }
+  
+  // Controllo lunghezza minima password
+  if (passwordForm.value.newPassword && passwordForm.value.newPassword.length < 5) {
+    return 'La password deve avere almeno 5 caratteri'
+  }
+  
+  if (passwordForm.value.newPassword && passwordForm.value.confirmPassword) {
+    if (passwordForm.value.newPassword !== passwordForm.value.confirmPassword) {
+      return 'Le password non corrispondono'
+    }
+    
+    if (passwordForm.value.newPassword === passwordForm.value.oldPassword) {
+      return 'La nuova password deve essere diversa da quella attuale'
+    }
+  }
+  
+  return ''
+})
+
+const hasPasswordValidationError = computed(() => {
+  return passwordValidationMessage.value !== ''
+})
+
+// Computed properties per la validazione del form registrazione
+const registerValidationMessage = computed(() => {
+  if (!registerForm.value.password && !registerForm.value.confirmPassword) {
+    return ''
+  }
+  
+  // Controllo lunghezza minima password
+  if (registerForm.value.password && registerForm.value.password.length < 5) {
+    return 'La password deve avere almeno 5 caratteri'
+  }
+  
+  if (registerForm.value.password && registerForm.value.confirmPassword) {
+    if (registerForm.value.password !== registerForm.value.confirmPassword) {
+      return 'Le password non corrispondono'
+    }
+  }
+  
+  return ''
+})
+
+const hasRegisterValidationError = computed(() => {
+  return registerValidationMessage.value !== ''
+})
+
+const isRegisterFormValid = computed(() => {
+  return registerForm.value.nome && 
+         registerForm.value.cognome && 
+         registerForm.value.username && 
+         registerForm.value.email && 
+         registerForm.value.password && 
+         registerForm.value.password.length >= 5 &&
+         registerForm.value.confirmPassword &&
+         registerForm.value.citta &&
+         registerForm.value.password === registerForm.value.confirmPassword
 })
 
 // Methods
@@ -166,6 +366,7 @@ const handleLogin = async () => {
   
   isLoading.value = true
   errorMessage.value = ''
+  successMessage.value = ''
   
   try {
     const response = await Auth.login(loginForm.value.username, loginForm.value.password)
@@ -181,6 +382,51 @@ const handleLogin = async () => {
     errorMessage.value = error.message || 'Errore durante il login'
   } finally {
     isLoading.value = false
+  }
+}
+
+const handleRegister = async () => {
+  if (isRegisterLoading.value || !isRegisterFormValid.value) return
+  
+  isRegisterLoading.value = true
+  errorMessage.value = ''
+  successMessage.value = ''
+  
+  try {
+    const response = await Auth.register(
+      registerForm.value.nome,
+      registerForm.value.cognome,
+      registerForm.value.username,
+      registerForm.value.email,
+      registerForm.value.password,
+      registerForm.value.citta
+    )
+    
+    if (response.success) {
+      successMessage.value = 'Registrazione completata con successo! Puoi ora effettuare il login.'
+      
+      // Reset form
+      registerForm.value = {
+        nome: '',
+        cognome: '',
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        citta: ''
+      }
+      
+      // Passa al form di login dopo 2 secondi
+      setTimeout(() => {
+        showRegister.value = false
+        successMessage.value = ''
+      }, 2000)
+    }
+  } catch (error) {
+    console.error('Errore durante la registrazione:', error)
+    errorMessage.value = error.message || 'Errore durante la registrazione'
+  } finally {
+    isRegisterLoading.value = false
   }
 }
 
@@ -376,6 +622,70 @@ onMounted(() => {
   padding: 0.8rem;
   border-radius: 4px;
   margin-bottom: 1rem;
+  border: 1px solid #ffcdd2;
+}
+
+.success-message {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #c8e6c9;
+}
+
+/* Auth Toggle Styles */
+.auth-toggle {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.auth-toggle::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.toggle-button {
+  width: 48%;
+  padding: 0.6rem;
+  border: 2px solid #074079;
+  background-color: white;
+  color: #074079;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.toggle-button:first-child {
+  border-radius: 4px 0 0 4px;
+  margin-right: 1%;
+}
+
+.toggle-button:last-child {
+  border-radius: 0 4px 4px 0;
+  margin-left: 1%;
+}
+
+.toggle-button.active {
+  background-color: #074079;
+  color: white;
+}
+
+.toggle-button:hover:not(.active) {
+  background-color: #f0f7ff;
+}
+
+/* Stile per il messaggio di validazione del form registrazione */
+.validation-error {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #ffebee;
+  border-radius: 4px;
   border: 1px solid #ffcdd2;
 }
 

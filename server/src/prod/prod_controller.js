@@ -14,13 +14,30 @@ const getAllProds = async (req, res) => {
 
 const insertProduct = async (req, res) => {
     try {
-        const { origine_ricetta } = req.body;
+        const { titolo, descrizione, prezzo, immagine, data_scadenza, origine_ricetta } = req.body;
         
-        if (!origine_ricetta) {
-            return res.status(400).json({ error: 'Origine ricetta è obbligatoria' });
+        // Validazione campi obbligatori
+        if (!titolo || !descrizione || !prezzo || !data_scadenza || !origine_ricetta) {
+            return res.status(400).json({ 
+                error: 'Tutti i campi sono obbligatori: titolo, descrizione, prezzo, data_scadenza, origine_ricetta' 
+            });
         }
         
-        const result = await pool.query(queries.insertProductQuery, [origine_ricetta]);
+        // Conversione prezzo in centesimi se necessario
+        const prezzoInCentesimi = Math.round(parseFloat(prezzo) * 100);
+        
+        // Conversione data in formato DATE (senza ora)
+        const dataScadenzaFormatted = new Date(data_scadenza).toISOString().split('T')[0];
+        
+        const result = await pool.query(queries.insertProductQuery, [
+            titolo,
+            descrizione,
+            prezzoInCentesimi,
+            immagine || 'placeholder.jpg',
+            dataScadenzaFormatted,
+            origine_ricetta
+        ]);
+        
         res.status(201).json({
             message: 'Prodotto creato con successo',
             product: result.rows[0]

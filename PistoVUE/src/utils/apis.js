@@ -8,4 +8,15 @@ const getAllUsers = async () => {
     return await response.json();
 }
 
-export {getAllProds, getAllUsers}
+const addProduct = async (titolo, descrizione, prezzo, immagine, data_scadenza, origine_ricetta, utente_id) => {
+    const response = await fetch('/api/prodotti', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ titolo, descrizione, prezzo, immagine, data_scadenza, origine_ricetta, utente_id }),
+    });
+    return await response.json();
+}
+
+export {getAllProds, getAllUsers, addProduct}

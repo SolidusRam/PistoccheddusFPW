@@ -68,9 +68,28 @@ const changePassword = async (oldPassword, newPassword) => {
     return data;
 }
 
+const register = async (nome, cognome, username, email, password, citta) => {
+    const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nome, cognome, username, email, password, citta })
+    });
+
+    const data = await response.json();
+    
+    if (!response.ok) {
+        throw new Error(data.error || 'Errore durante la registrazione');
+    }
+    
+    return data;
+}
+
 export { 
     login,
     logout,
     getCurrentSession,
-    changePassword
+    changePassword,
+    register
 };

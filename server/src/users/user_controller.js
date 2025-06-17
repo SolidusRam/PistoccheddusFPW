@@ -24,7 +24,44 @@ const insertUser = async (req, res) => {
     }
 };
 
+const registerUser = async (req, res) => {
+    try {
+        const { nome, cognome, username, email, password, citta } = req.body;
+        
+        // Validazione campi obbligatori
+        if (!nome || !cognome || !username || !email || !password || !citta) {
+            return res.status(400).json({ error: 'Tutti i campi sono obbligatori' });
+        }
+        
+        // Validazione lunghezza password
+        if (password.length < 5) {
+            return res.status(400).json({ error: 'La password deve avere almeno 5 caratteri' });
+        }
+        
+        // Verifica se username o email esistono già
+        const existingUser = await pool.query(queries.checkUserExistsQuery, [username, email]);
+        
+        if (existingUser.rows.length > 0) {
+            return res.status(400).json({ error: 'Username o email già esistenti' });
+        }
+        
+        // Registra il nuovo utente
+        const result = await pool.query(queries.registerUserQuery, [nome, cognome, username, email, password, citta]);
+        
+        res.status(201).json({
+            success: true,
+            message: 'Registrazione completata con successo',
+            user: result.rows[0]
+        });
+        
+    } catch (error) {
+        console.error('Errore nella registrazione:', error);
+        res.status(500).json({ error: 'Errore durante la registrazione' });
+    }
+};
+
 module.exports = {
     getAllUsers,
     insertUser,
+    registerUser,
 };
