@@ -36,8 +36,7 @@
 ## 📊 Struttura Database Implementata
 
 ### Tabella `utenti`
-- `id` (integer, SERIAL PRIMARY KEY)
-- `username` (varchar(20), UNIQUE) - **Cognome studente**
+- `username` (varchar(20), PRIMARY KEY) - **Cognome studente**
 - `password` (varchar(20)) - **Ultime 5 cifre matricola**
 - `nome` (varchar(50))
 - `cognome` (varchar(50))
