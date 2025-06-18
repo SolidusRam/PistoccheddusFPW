@@ -424,7 +424,19 @@ const handleRegister = async () => {
     }
   } catch (error) {
     console.error('Errore durante la registrazione:', error)
-    errorMessage.value = error.message || 'Errore durante la registrazione'
+    
+    // Gestisce messaggi di errore specifici per username/email esistenti
+    let errorMsg = error.message || 'Errore durante la registrazione'
+    
+    if (error.message.includes('Username già esistente')) {
+      errorMsg = 'Username già in uso. Scegli un username diverso.'
+    } else if (error.message.includes('Email già esistente')) {
+      errorMsg = 'Email già registrata. Usa un\'altra email o effettua il login.'
+    } else if (error.message.includes('Username e email già esistenti')) {
+      errorMsg = 'Username e email già registrati. Effettua il login o usa dati diversi.'
+    }
+    
+    errorMessage.value = errorMsg
   } finally {
     isRegisterLoading.value = false
   }

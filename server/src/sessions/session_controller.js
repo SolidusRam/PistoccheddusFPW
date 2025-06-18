@@ -24,7 +24,6 @@ const login = (req, res) => {
                 const user = results.rows[0];
                 // Salva i dati dell'utente nella sessione (senza password)
                 req.session.user = {
-                    id: user.id,
                     username: user.username,
                     nome: user.nome,
                     cognome: user.cognome,

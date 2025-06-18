@@ -33,5 +33,9 @@ app.listen(port, () => {
     console.log('- POST /prodotti (crea nuovo prodotto)');
     console.log('- GET /utenti (lista utenti)');
     console.log('- POST /utenti (crea nuovo utente)');
+    console.log('- POST /register (registrazione utente)');
     console.log('- POST /login (login utente)');
+    console.log('- POST /logout (logout utente)');
+    console.log('- GET /session (sessione corrente)');
+    console.log('- POST /change-password (cambio password)');
 });

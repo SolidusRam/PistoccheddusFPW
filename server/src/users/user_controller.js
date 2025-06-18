@@ -13,7 +13,23 @@ const getAllUsers = async (req, res) => {
 
 const insertUser = async (req, res) => {
     try {
-        const result = await pool.query(queries.insertUserQuery);
+        const { username } = req.body;
+        
+        if (!username) {
+            return res.status(400).json({ error: 'Username è obbligatorio' });
+        }
+        
+        // Verifica se l'username esiste già
+        const existingUser = await pool.query('SELECT username FROM utenti WHERE username = $1', [username]);
+        
+        if (existingUser.rows.length > 0) {
+            return res.status(400).json({ 
+                error: 'Username già esistente',
+                errorType: 'username_exists'
+            });
+        }
+        
+        const result = await pool.query(queries.insertUserQuery, [username]);
         res.status(201).json({
             message: 'Utente creato con successo',
             user: result.rows[0]
@@ -42,7 +58,26 @@ const registerUser = async (req, res) => {
         const existingUser = await pool.query(queries.checkUserExistsQuery, [username, email]);
         
         if (existingUser.rows.length > 0) {
-            return res.status(400).json({ error: 'Username o email già esistenti' });
+            // Controllo più specifico per determinare cosa esiste già
+            const existingUsername = await pool.query('SELECT username FROM utenti WHERE username = $1', [username]);
+            const existingEmail = await pool.query('SELECT username FROM utenti WHERE email = $1', [email]);
+            
+            if (existingUsername.rows.length > 0 && existingEmail.rows.length > 0) {
+                return res.status(400).json({ 
+                    error: 'Username e email già esistenti',
+                    errorType: 'both_exist'
+                });
+            } else if (existingUsername.rows.length > 0) {
+                return res.status(400).json({ 
+                    error: 'Username già esistente',
+                    errorType: 'username_exists'
+                });
+            } else if (existingEmail.rows.length > 0) {
+                return res.status(400).json({ 
+                    error: 'Email già esistente',
+                    errorType: 'email_exists'
+                });
+            }
         }
         
         // Registra il nuovo utente

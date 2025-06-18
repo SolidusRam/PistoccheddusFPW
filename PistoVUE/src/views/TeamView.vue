@@ -9,10 +9,10 @@
       <MemberCard
         v-else
         v-for="member in members"
-        :key="member.id"
+        :key="member.username"
         :name="`${member.nome} ${member.cognome}`"
         :description="`Membro del team da ${member.citta}. Registrato il ${formatDate(member.data_registrazione)}`"
-        :photo="getDefaultPhoto(member.id)"
+        :photo="getDefaultPhoto(member.username)"
       />
     </div>
   </div>
@@ -49,16 +49,21 @@ const formatDate = (dateString) => {
   })
 }
 
-// Funzione per ottenere foto di default
-const getDefaultPhoto = (id) => {
+// Funzione per ottenere foto di default basata sull'username
+const getDefaultPhoto = (username) => {
   const photos = [
     'https://randomuser.me/api/portraits/men/83.jpg',
     'https://randomuser.me/api/portraits/women/44.jpg',
     'https://randomuser.me/api/portraits/men/80.jpg',
     'https://randomuser.me/api/portraits/women/65.jpg',
-    'https://randomuser.me/api/portraits/men/32.jpg'
+    'https://randomuser.me/api/portraits/men/32.jpg',
+    'https://randomuser.me/api/portraits/men/34.jpg',
+    'https://randomuser.me/api/portraits/men/35.jpg',
+    'https://randomuser.me/api/portraits/men/36.jpg'
   ]
-  return photos[(id - 1) % photos.length] || photos[0]
+  // Usa il codice ASCII del primo carattere dell'username per scegliere la foto
+  const index = username.charCodeAt(0) % photos.length 
+  return photos[index]
 }
 
 onMounted(() => {
