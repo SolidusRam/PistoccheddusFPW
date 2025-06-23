@@ -24,13 +24,6 @@
             </div>
           </div>
         </div>
-        <div class="social-links">
-          <div class="social-icons">
-            <a href="#" class="social-icon" title="Facebook">FB</a>
-            <a href="#" class="social-icon" title="Instagram">IG</a>
-            <a href="#" class="social-icon" title="Twitter">X</a>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -128,42 +121,6 @@
   text-decoration: underline;
 }
 
-.social-links {
-  padding-top: 0.2rem;
-  width: 100%;
-  text-align: center;
-}
-
-.social-icons {
-  text-align: center;
-}
-
-.social-icon {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  line-height: 1.75rem;
-  width: 1.75rem;
-  height: 1.75rem;
-  background-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 50%;
-  font-size: 0.8rem;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
-  font-weight: bold;
-  margin: 0 0.375rem;
-}
-
-.social-icon:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #074079;
-  transform: scale(1.1);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}
-
 /* Responsive: Desktop (768px and above) */
 @media (min-width: 768px) {
   .footer-container {
@@ -206,13 +163,6 @@
   .team-contacts {
     text-align: right;
     margin-bottom: 0.5rem;
-  }
-  
-  .social-links {
-    border-top: none;
-    padding-top: 0;
-    width: auto;
-    text-align: right;
   }
 
   /* Layout orizzontale per desktop */

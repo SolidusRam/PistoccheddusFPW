@@ -8,7 +8,6 @@
         <img src="@/assets/pardula.jpg" alt="Corso di pasticceria sarda" class="ad-image">
         <h4 class="ad-heading">Corso di Pasticceria Sarda</h4>
         <p class="ad-text">Impara i segreti delle pardulas tradizionali!</p>
-        <a href="#" class="ad-button">Scopri di più</a>
       </div>
     </div>
     
@@ -18,7 +17,6 @@
         <img src="@/assets/seadas.jpg" alt="Ingredienti tipici sardi" class="ad-image">
         <h4 class="ad-heading">Ingredienti Premium</h4>
         <p class="ad-text">Formaggio e miele sardo per le tue seadas!</p>
-        <a href="#" class="ad-button">Acquista ora</a>
       </div>
     </div>
     
@@ -28,7 +26,6 @@
         <div class="offer-badge">-20%</div>
         <h4 class="ad-heading">Offerta Speciale</h4>
         <p class="ad-text">Forni professionali per dolci sardi perfetti!</p>
-        <a href="#" class="ad-button">Approfitta ora</a>
       </div>
     </div>
   </div>
@@ -104,25 +101,6 @@
   margin-bottom: 1rem;
 }
 
-.ad-button {
-  display: inline-block;
-  background-color: #074079;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  transform: translateY(0);
-}
-
-.ad-button:hover {
-  background-color: #053260;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
 /* Stile per l'offerta speciale */
 .special-ad {
   border: 2px solid #ffcc00;
@@ -178,9 +156,6 @@
     margin-bottom: 0.8rem;
   }
   
-  .ad-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
+
 }
 </style>

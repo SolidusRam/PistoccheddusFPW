@@ -37,8 +37,7 @@
     <section class="quick-nav">
       <h3>Navigazione Rapida</h3>
       <ul>
-        <li><a href="#" @click.prevent="scrollToTop">Torna all'inizio</a></li>
-        <li><a href="#main-content" @click.prevent="scrollTo('main-content')">Contenuto principale</a></li>
+        <li><a href="#">Torna all'inizio</a></li>
       </ul>
     </section>
   </div>
@@ -128,18 +127,6 @@ const popularProducts = ref([
   { id: 2, name: 'Amaretti', views: 890 },
   { id: 3, name: 'Papassini', views: 750 }
 ])
-
-// Funzioni di utilità
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-
-function scrollTo(elementClass) {
-  const element = document.querySelector(`.${elementClass}`)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
-}
 
 </script>
 
@@ -241,30 +228,14 @@ event-item strong {
   border-bottom: none;
 }
 
+.quick-nav ul {
+    padding-left: 5%;
+}
+
 @media (min-width: 768px) {
   .sidebar-left-container {
     position: sticky;
-    top: 60px;
-    max-height: calc(100vh - 60px);
-    overflow-y: auto;
-  }
-
-  /* Scrollbar personalizzata per desktop */
-  .sidebar-left-container::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .sidebar-left-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  .sidebar-left-container::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 3px;
-  }
-
-  .sidebar-left-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    top: 70px;
   }
 }
 </style>
