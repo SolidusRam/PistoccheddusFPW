@@ -375,11 +375,16 @@ const handleLogin = async () => {
       sessionStore.setUser(response.user)
       router.push('/')
     } else {
-      errorMessage.value = 'Errore durante il login'
-    }
-  } catch (error) {
+      errorMessage.value = 'Credenziali non valide'
+    }  } catch (error) {
     console.error('Errore durante il login:', error)
-    errorMessage.value = error.message || 'Errore durante il login'
+    
+    // Gestione semplificata degli errori
+    if (error.message && (error.message.includes('401') || error.message.includes('Unauthorized'))) {
+      errorMessage.value = 'Credenziali non valide'
+    } else {
+      errorMessage.value = 'Errore server o database non disponibile'
+    }
   } finally {
     isLoading.value = false
   }
@@ -421,18 +426,17 @@ const handleRegister = async () => {
         showRegister.value = false
         successMessage.value = ''
       }, 2000)
-    }
-  } catch (error) {
+    }  } catch (error) {
     console.error('Errore durante la registrazione:', error)
     
-    // Gestisce messaggi di errore specifici per username/email esistenti
-    let errorMsg = error.message || 'Errore durante la registrazione'
+    // Gestione semplificata degli errori
+    let errorMsg = 'Errore server o database non disponibile'
     
-    if (error.message.includes('Username già esistente')) {
+    if (error.message && error.message.includes('Username già esistente')) {
       errorMsg = 'Username già in uso. Scegli un username diverso.'
-    } else if (error.message.includes('Email già esistente')) {
+    } else if (error.message && error.message.includes('Email già esistente')) {
       errorMsg = 'Email già registrata. Usa un\'altra email o effettua il login.'
-    } else if (error.message.includes('Username e email già esistenti')) {
+    } else if (error.message && error.message.includes('Username e email già esistenti')) {
       errorMsg = 'Username e email già registrati. Effettua il login o usa dati diversi.'
     }
     
@@ -497,10 +501,17 @@ const handlePasswordChange = async () => {
       showPasswordChange.value = false
       passwordMessage.value = ''
     }, 2000)
-    
-  } catch (error) {
+      } catch (error) {
     console.error('Errore durante il cambio password:', error)
-    passwordMessage.value = error.message || 'Errore durante il cambio password'
+    
+    let errorMsg = 'Errore server o database non disponibile'
+    
+    // Solo gestione specifica per credenziali errate
+    if (error.message && (error.message.includes('401') || error.message.includes('Unauthorized'))) {
+      errorMsg = 'Password attuale non corretta'
+    }
+    
+    passwordMessage.value = errorMsg
     passwordMessageType.value = 'error'
   } finally {
     isPasswordLoading.value = false
