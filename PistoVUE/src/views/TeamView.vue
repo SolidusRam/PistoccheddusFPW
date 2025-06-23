@@ -52,17 +52,17 @@ const formatDate = (dateString) => {
 // Funzione per ottenere foto di default basata sull'username
 const getDefaultPhoto = (username) => {
   const photos = [
-    'https://randomuser.me/api/portraits/men/83.jpg',
-    'https://randomuser.me/api/portraits/women/44.jpg',
-    'https://randomuser.me/api/portraits/men/80.jpg',
-    'https://randomuser.me/api/portraits/women/65.jpg',
-    'https://randomuser.me/api/portraits/men/32.jpg',
-    'https://randomuser.me/api/portraits/men/34.jpg',
-    'https://randomuser.me/api/portraits/men/35.jpg',
-    'https://randomuser.me/api/portraits/men/36.jpg'
+    'https://randomuser.me/api/portraits/lego/1.jpg',
+    'https://randomuser.me/api/portraits/lego/2.jpg',
+    'https://randomuser.me/api/portraits/lego/3.jpg',
+    'https://randomuser.me/api/portraits/lego/4.jpg',
+    'https://randomuser.me/api/portraits/lego/5.jpg',
+    'https://randomuser.me/api/portraits/lego/6.jpg',
+    'https://randomuser.me/api/portraits/lego/7.jpg',
+    'https://randomuser.me/api/portraits/lego/8.jpg'
   ]
-  // Usa il codice ASCII del primo carattere dell'username per scegliere la foto
-  const index = username.charCodeAt(0) % photos.length 
+  // Calcola un indice basato sull'username per ottenere una foto unica
+  const index = Math.abs(username.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % photos.length
   return photos[index]
 }
 

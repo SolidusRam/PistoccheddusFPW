@@ -15,9 +15,7 @@ import SidebarRight from './components/SidebarRight.vue'
     
     <nav class="app-nav">
       <NavBar />
-    </nav>
-    
-    <div class="app-content">
+    </nav>    <div class="app-content container-fluid">
       <div class="row">
         <aside class="sidebar-left col-3">
           <SidebarLeft />
@@ -45,22 +43,17 @@ import SidebarRight from './components/SidebarRight.vue'
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.app-content {
-  padding: 0 1rem;
-}
-
 .main-content {
   background-color: rgba(255, 255, 255, 0.93);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  margin: 0.5rem 0;
   padding: 1rem;
 }
 
 .sidebar-left, .sidebar-right {
   background-color: rgba(250, 250, 250, 0.85);
   border-radius: 5px;
-  margin: 0.5rem 0;
+  padding: 1rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 }
 
@@ -70,38 +63,6 @@ import SidebarRight from './components/SidebarRight.vue'
     width: 100% !important;
     float: none !important;
     margin-bottom: 1rem;
-  }
-  
-  .sidebar-left {
-    order: 2;
-  }
-  
-  .main-content {
-    order: 1;
-  }
-  
-  .sidebar-right {
-    order: 3;
-  }
-}
-
-/* Layout desktop: sidebar in parallelo */
-@media (min-width: 768px) {
-  .app-content .row {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-  
-  .sidebar-left {
-    padding-right: 0.5rem;
-  }
-  
-  .sidebar-right {
-    padding-left: 0.5rem;
-  }
-  
-  .main-content {
-    padding: 1rem;
   }
 }
 </style>

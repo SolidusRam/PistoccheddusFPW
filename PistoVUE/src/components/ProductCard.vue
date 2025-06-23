@@ -2,12 +2,13 @@
   <div class="product-card">
     <div class="product-image-container">
       <img :src="imageUrl" :alt="title" class="product-image">
-    </div>
-    <div class="product-info">
+    </div>    <div class="product-info">
       <h3 class="product-title">{{ title }}</h3>
       <p class="product-description">{{ description }}</p>
-      <p class="product-price">{{ formattedPrice }}</p>
-      <p class="product-origin" v-if="origine_ricetta">Origine: {{ origine_ricetta }}</p>
+      <div class="product-footer">
+        <p class="product-price">{{ formattedPrice }}</p>
+        <p class="product-origin" v-if="origine_ricetta">Origine: {{ origine_ricetta }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -61,19 +62,13 @@ export default {
   overflow: hidden;
   margin-bottom: 1.5rem;
   background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .product-card::after {
   content: "";
   display: table;
   clear: both;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .product-image-container {
@@ -106,17 +101,29 @@ export default {
   line-height: 1.4;
 }
 
+.product-footer {
+  margin-top: 0.5rem;
+}
+
+.product-footer::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .product-price {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #333;
+  margin: 0;
+  float: left;
 }
 
 .product-origin {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #666;
-  font-style: italic;
-  margin-top: 0.5rem;
+  margin: 0;
+  float: right;
 }
 
 /* Responsive: Desktop (768px and above) */
@@ -130,15 +137,10 @@ export default {
      max-height: none;
      height: 200px;
   }
-
   .product-info {
     width: 60%;
     float: right;
     padding: 1.5rem;
-    /* Centra verticalmente il contenuto */
-    display: table-cell;
-    vertical-align: middle;
-    height: 200px;
   }
 }
 </style>

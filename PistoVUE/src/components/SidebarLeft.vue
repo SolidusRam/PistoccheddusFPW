@@ -1,58 +1,5 @@
 <template>
   <div class="sidebar-left-container">
-  
-    <!-- Filtri prodotti - visibili solo nella pagina prodotti -->
-    <section v-if="$route.path === '/prodotti'" class="filters-section">
-      <h3>Filtri Prodotti</h3>
-      
-      <div class="filter-group">
-        <h4>Categoria</h4>
-        <select v-model="filtersStore.categoryFilter">
-          <option value="tutti">Tutte le categorie</option>
-          <option value="dolci-tradizionali">Dolci Tradizionali</option>
-          <option value="pasticceria-moderna">Pasticceria Moderna</option>
-          <option value="torte">Torte</option>
-          <option value="biscotti">Biscotti</option>
-        </select>
-      </div>
-      
-      <div class="filter-group">
-        <h4>Prezzo</h4>
-        <select v-model="filtersStore.priceRangeFilter">
-          <option value="tutti">Tutti i prezzi</option>
-          <option value="under-5">Sotto 5€</option>
-          <option value="5-10">5€ - 10€</option>
-          <option value="10-20">10€ - 20€</option>
-          <option value="over-20">Sopra 20€</option>
-        </select>
-      </div>
-      
-      <div class="filter-group">
-        <h4>Ingredienti</h4>
-        <div class="ingredients-list">
-          <label>
-            <input type="checkbox" v-model="filtersStore.ingredientsFilter" value="mandorle">
-            Mandorle
-          </label>
-          <label>
-            <input type="checkbox" v-model="filtersStore.ingredientsFilter" value="miele">
-            Miele
-          </label>
-          <label>
-            <input type="checkbox" v-model="filtersStore.ingredientsFilter" value="ricotta">
-            Ricotta
-          </label>
-          <label>
-            <input type="checkbox" v-model="filtersStore.ingredientsFilter" value="zafferano">
-            Zafferano
-          </label>
-        </div>
-      </div>
-      
-      <button class="reset-filters" @click="filtersStore.resetFilters()">
-        Resetta filtri
-      </button>
-    </section>
 
     <!-- Sezione Informativa - visibile in tutte le pagine -->
     <section class="info-section">
@@ -98,12 +45,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeMount, onBeforeUnmount } from 'vue'
-import { useFiltersStore } from '@/stores/filters'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const filtersStore = useFiltersStore()
 
 // Dati dimostrativi per la sezione "Lo sapevi che..."
 const facts = [
@@ -152,12 +97,8 @@ onMounted(() => {
     }
     animationFrameId = requestAnimationFrame(animate)
   }, FACT_INTERVAL)
-
   // Avvia la prima animazione
   animationFrameId = requestAnimationFrame(animate)
-
-  // Carica le preferenze salvate
-  filtersStore.loadPreferences()
 })
 
 onBeforeUnmount(() => {
@@ -200,12 +141,6 @@ function scrollTo(elementClass) {
   }
 }
 
-// Cambia la modalità di visualizzazione
-function changeViewMode(mode) {
-  filtersStore.viewMode = mode
-  filtersStore.savePreferences()
-}
-
 </script>
 
 <style scoped>
@@ -240,64 +175,6 @@ h4 {
 
 .filter-group {
   margin-bottom: 1rem;
-}
-
-select, button {
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.25rem 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
-}
-
-button {
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #f0f0f0;
-}
-
-button.active {
-  background-color: #074079;
-  color: white;
-}
-
-.ingredients-list {
-  margin-bottom: 0.5rem;
-}
-
-.ingredients-list label input {
-  margin-right: 0.5rem;
-  vertical-align: middle;
-}
-
-.reset-filters {
-  background-color: #ff4444;
-  color: white;
-  border: none;
-  margin-top: 1rem;
-}
-
-.reset-filters:hover {
-  background-color: #cc0000;
-}
-
-.view-toggles {
-  margin-bottom: 0.5rem;
-}
-
-.view-toggles::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.view-toggles button {
-  float: left;
-  width: 50%;
 }
 
 .fun-fact {
