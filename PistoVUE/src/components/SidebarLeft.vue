@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-left-container">
+  <div class="sidebar-left-container desktop-sticky">
 
     <!-- Sezione Informativa - visibile in tutte le pagine -->
     <section class="info-section">
@@ -44,7 +44,9 @@ const facts = [
   "I dolci sardi hanno una storia millenaria che risale all'epoca nuragica",
   "Le mandorle sono uno degli ingredienti più utilizzati nella pasticceria sarda",
   "Molti dolci sardi vengono preparati in occasione di festività specifiche",
-  "La ricetta del torrone sardo è rimasta invariata per centinaia di anni"
+  "La ricetta del torrone sardo è rimasta invariata per centinaia di anni",
+  "Il miele di corbezzolo è uno degli ingredienti più pregiati della pasticceria sarda",
+  "Il pane carasau, sebbene non sia un dolce, è spesso servito con dolci come il miele e il formaggio",
 ]
 
 const currentFact = ref(facts[0])
@@ -185,12 +187,8 @@ h4 {
   height: 100%;
   background-color: #074079;
   width: 0%;
-  transition-property: width;
-  transition-duration: 0.1s;
-  transition-timing-function: linear;
+  transition: width 0.1s linear;
   border-radius: 2px;
-  transform: translateZ(0);
-  will-change: width;
 }
 
 .event-list {
@@ -206,7 +204,7 @@ h4 {
   padding-left: 0.75rem;
 }
 
-event-item strong {
+.event-item strong {
   color: #074079;
   display: block;
   margin-bottom: 0.25rem;
@@ -231,12 +229,6 @@ event-item strong {
 }
 
 @media (min-width: 768px) {
-  .sidebar-left-container {
-    position: sticky;
-    top: 70px;
-    z-index: 10;
-    max-height: calc(100vh - 70px);
-    overflow-y: auto;
-  }
+  /* Le proprietà sticky sono ora gestite dalla classe desktop-sticky */
 }
 </style>

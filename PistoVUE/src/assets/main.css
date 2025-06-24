@@ -40,6 +40,29 @@ body {
   font-family: 'Merriweather', serif;
 }
 
+/* Utility Classes per eliminare codice ripetuto */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.hover-transform {
+  transition: transform 0.3s ease;
+}
+
+.hover-transform:hover {
+  transform: scale(1.05);
+}
+
+/* Spacing Standard - Eliminare inconsistenze 15px vs 1rem vs 1.5rem */
+.spacing-sm { margin: 0.5rem; }
+.spacing-md { margin: 1rem; }
+.spacing-lg { margin: 1.5rem; }
+.padding-sm { padding: 0.5rem; }
+.padding-md { padding: 1rem; }
+.padding-lg { padding: 1.5rem; }
+
 /* Sistema a griglia a 12 colonne */
 .container {
   width: 100%;
@@ -175,4 +198,15 @@ body {
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 0;
+}
+
+/* Utility Classes Responsive - Media Query Consolidata */
+@media (min-width: 768px) {
+  .desktop-sticky {
+    position: sticky;
+    top: 70px;
+    z-index: 10;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="footer-container">
-    <div class="logo-container">
+  <div class="footer-container clearfix">
+    <div class="logo-container hover-transform">
       <img src="@/assets/logo.png" alt="Logo Pistoccheddus" class="logo">
     </div>
     <div class="content-container">
@@ -11,16 +11,16 @@
         <div class="team-contacts">
           <div class="team-members">
             <div class="team-member">
-              <span>Mario Rossi - <a href="mailto:mario.rossi@email.com">mario.rossi@email.com</a></span>
+              <span>Igor Derosas - <a>igorderosas@mail</a></span>
             </div>
             <div class="team-member">
-              <span>Anna Bianchi - <a href="mailto:anna.bianchi@email.com">anna.bianchi@email.com</a></span>
+              <span>Leonardo Melis - <a>leonardomelis@mail</a></span>
             </div>
             <div class="team-member">
-              <span>Giuseppe Verdi - <a href="mailto:giuseppe.verdi@email.com">giuseppe.verdi@email.com</a></span>
+              <span>Matteo Parasuco - <a>matteoparasuco@mail</a></span>
             </div>
             <div class="team-member">
-              <span>Laura Neri - <a href="mailto:laura.neri@email.com">laura.neri@email.com</a></span>
+              <span>Sharon Pisanu - <a>sharonpisau@mail</a></span>
             </div>
           </div>
         </div>
@@ -46,11 +46,6 @@
   margin-right: 0.5rem;
   display: inline-block;
   vertical-align: middle;
-  transition: transform 0.3s ease;
-}
-
-.logo-container:hover {
-  transform: scale(1.05);
 }
 
 .logo {
@@ -126,12 +121,6 @@
   .footer-container {
     text-align: left;
     padding: 0.6rem 1.5rem;
-  }
-  
-  .footer-container::after {
-    content: "";
-    display: table;
-    clear: both;
   }
   
   .logo-container {

@@ -1,7 +1,7 @@
 <!-- Logo e Titolo--> 
 <template>
-  <div class="header-container">
-    <div class="logo-container">
+  <div class="header-container clearfix">
+    <div class="logo-container hover-transform">
       <img src="@/assets/logo.png" alt="Logo Pistoccheddus" class="logo">
     </div>
     <div class="title-container">
@@ -20,20 +20,9 @@
   overflow: hidden;
 }
 
-.header-container::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .logo-container {
   margin: 0 auto 0.5rem;
   display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.logo-container:hover {
-  transform: scale(1.05);
 }
 
 .logo {

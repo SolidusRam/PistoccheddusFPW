@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-container">
-    <nav class="main-nav">
+    <nav class="main-nav clearfix">
       <RouterLink to="/" class="nav-link" title="Home">Home</RouterLink>
       <RouterLink to="/prodotti" class="nav-link" title="Prodotti">Prodotti</RouterLink>
       <RouterLink to="/aggiungi-prodotto" class="nav-link" title="Aggiungi Prodotto">Aggiungi Prodotto</RouterLink>
@@ -42,12 +42,6 @@ const shouldHighlightLogin = computed(() => {
   padding: 0.5rem;
   backdrop-filter: blur(5px);
   text-align: center;
-}
-
-.main-nav::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .nav-link {

@@ -1,11 +1,11 @@
 <template>
-  <div class="product-card">
+  <div class="product-card clearfix">
     <div class="product-image-container">
       <img :src="imageUrl" :alt="title" class="product-image">
     </div>    <div class="product-info">
       <h3 class="product-title">{{ title }}</h3>
       <p class="product-description">{{ description }}</p>
-      <div class="product-footer">
+      <div class="product-footer clearfix">
         <p class="product-price">{{ formattedPrice }}</p>
         <p class="product-origin" v-if="origine_ricetta">Origine: {{ origine_ricetta }}</p>
       </div>
@@ -62,12 +62,6 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.product-card::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .product-image-container {
   width: 100%;
   overflow: hidden; /* Nasconde parti dell'immagine che escono */
@@ -100,12 +94,6 @@ export default {
 
 .product-footer {
   margin-top: 0.5rem;
-}
-
-.product-footer::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .product-price {

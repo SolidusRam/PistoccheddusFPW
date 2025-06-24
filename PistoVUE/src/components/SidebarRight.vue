@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-right-container">
+  <div class="sidebar-right-container desktop-sticky">
     <h3 class="ad-title">Pubblicità</h3>
     
     <!-- Prima pubblicità -->

@@ -1,5 +1,5 @@
 <template>
-  <div class="member-card">
+  <div class="member-card clearfix">
     <div class="member-photo-container">
       <img :src="photo" :alt="name" class="member-photo">
     </div>
@@ -35,12 +35,6 @@ const props = defineProps({
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.member-card::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .member-card:hover {

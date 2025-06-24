@@ -5,7 +5,7 @@
       <h2 class="auth-title">{{ showRegister ? 'Registrati' : 'Accedi' }}</h2>
       
       <!-- Toggle tra Login e Registrazione -->
-      <div class="auth-toggle">
+      <div class="auth-toggle clearfix">
         <button 
           @click="showRegister = false" 
           :class="{ active: !showRegister }"
@@ -661,12 +661,6 @@ onMounted(() => {
 .auth-toggle {
   margin-bottom: 2rem;
   text-align: center;
-}
-
-.auth-toggle::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .toggle-button {
