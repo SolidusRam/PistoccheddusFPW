@@ -60,8 +60,8 @@ import SidebarRight from './components/SidebarRight.vue'
 /* Layout mobile: sidebar sotto il contenuto principale */
 @media (max-width: 767px) {
   .sidebar-left, .sidebar-right, .main-content {
-    width: 100% !important;
-    float: none !important;
+    width: 100%;
+    float: none;
     margin-bottom: 1rem;
   }
 }
