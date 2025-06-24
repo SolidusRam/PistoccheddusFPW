@@ -118,7 +118,7 @@ export default {
 
 .product-origin {
   font-size: 1rem;
-  color: #666;
+  color:  #F0C832;
   margin: 0;
   float: right;
 }

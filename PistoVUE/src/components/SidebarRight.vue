@@ -10,15 +10,7 @@
         <p class="ad-text">Impara i segreti delle pardulas tradizionali!</p>
       </div>
     </div>
-    
-    <!-- Seconda pubblicità -->
-    <div class="ad-box">
-      <div class="ad-content">
-        <img src="@/assets/seadas.jpg" alt="Ingredienti tipici sardi" class="ad-image">
-        <h4 class="ad-heading">Ingredienti Premium</h4>
-        <p class="ad-text">Formaggio e miele sardo per le tue seadas!</p>
-      </div>
-    </div>
+      
     
     <!-- Terza pubblicità -->
     <div class="ad-box special-ad">
