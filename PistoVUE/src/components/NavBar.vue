@@ -41,7 +41,6 @@ const shouldHighlightLogin = computed(() => {
   width: 100%;
   padding: 0.5rem;
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   text-align: center;
 }
 
@@ -100,8 +99,8 @@ const shouldHighlightLogin = computed(() => {
 
 /* Stili per l'evidenziazione quando l'utente viene reindirizzato */
 .nav-link.highlight-login {
-  background-color: rgba(220, 53, 69, 0.9) !important;
-  color: white !important;
+  background-color: rgba(220, 53, 69, 0.9) ;
+  color: white ;
   /* border: 2px solid #dc3545; */
   animation: pulseRed 1.5s ease-in-out infinite;
   box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
@@ -143,10 +142,6 @@ const shouldHighlightLogin = computed(() => {
     border-right: none;
   }
   
-  /* Effetto hover specifico per desktop */
-  .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-1px);
-  }
+  
 }
 </style>

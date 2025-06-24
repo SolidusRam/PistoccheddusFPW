@@ -2,6 +2,7 @@
 const getAllUsersQuery = 'SELECT * FROM utenti ORDER BY username ASC';
 
 // Query per inserire un nuovo utente
+// NOW() viene utilizzato per impostare la data di registrazione corrente
 const insertUserQuery = 'INSERT INTO utenti (username, data_registrazione) VALUES ($1, NOW()) RETURNING *';
 
 // Query per registrare un nuovo utente completo
