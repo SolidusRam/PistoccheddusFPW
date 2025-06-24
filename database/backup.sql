@@ -88,11 +88,11 @@ ALTER TABLE ONLY public.prodotti ALTER COLUMN id SET DEFAULT nextval('public.pro
 --
 
 COPY public.prodotti (id, titolo, descrizione, prezzo, immagine, data_scadenza, origine_ricetta) FROM stdin;
-1	Pistoccheddus	I pistoccheddus sono piccoli biscotti tradizionali sardi, croccanti e leggeri, spesso realizzati con semola di grano duro, zucchero e strutto. Possono essere semplici o aromatizzati con scorza di limone o anice.	100	pardula.jpg	2030-01-01	Campidano
-2	Torrone	Il torrone sardo è un dolce a base di miele, albumi e mandorle o noci, noto per la sua consistenza morbida e il sapore intenso. Viene preparato senza zucchero aggiunto, a differenza di altri torroni italiani.	100	pardula.jpg	2030-01-01	Tonara
 3	Papassini	Biscotti tipici della tradizione autunnale sarda, i papassini contengono uvetta, noci, mandorle e sono aromatizzati con scorza d’arancia e spezie. Spesso decorati con glassa di zucchero colorata.	100	papassini.jpg	2030-01-01	Fonni
 4	Seadas	Le seadas sono dolci fritti ripieni di formaggio fresco (pecorino) e serviti caldi con miele sopra. Un contrasto unico tra dolce e salato, con una pasta sottile e croccante.	100	seadas.jpg	2030-01-01	Ogliastra
 5	Pardula	Le pardule sono piccole tortine con ripieno di ricotta o di formaggio. A seconda della zona si possono trovare in una versione dolce o salata, all'aroma di arancia o limone e, più rara, una versione con l'uvetta. 	100	pardula.jpg	2030-01-01	Marmilla
+2	Torrone	Il torrone sardo è un dolce a base di miele, albumi e mandorle o noci, noto per la sua consistenza morbida e il sapore intenso. Viene preparato senza zucchero aggiunto, a differenza di altri torroni italiani.	100	torrone.jpg	2030-01-01	Tonara
+1	Pistoccheddus	I pistoccheddus sono piccoli biscotti tradizionali sardi, croccanti e leggeri, spesso realizzati con semola di grano duro, zucchero e strutto. Possono essere semplici o aromatizzati con scorza di limone o anice.	100	pistoccheddus.jpg	2030-01-01	Campidano
 \.
 
 
@@ -103,8 +103,8 @@ COPY public.prodotti (id, titolo, descrizione, prezzo, immagine, data_scadenza, 
 COPY public.utenti (username, password, nome, cognome, email, citta, data_registrazione) FROM stdin;
 melis	66431	Leonardo	Melis	leonardomelis@mail	Cagliari	2025-05-31 00:00:00
 pisanu	66181	Sharon	Pisanu	sharonpisau@mail	Cagliari	2025-05-31 00:00:00
-derosas	66474	Igor	Derosas	igorderosas@mail	Cagliari	2025-05-31 00:00:00
-parasuco	66469	Matteo	Parasuco	matteoparasuco@mail	Cagliari	2025-05-31 00:00:00
+derosas	66474	Igor	Derosas	igorderosas@mail	Olbia	2025-05-31 00:00:00
+parasuco	66469	Matteo	Parasuco	matteoparasuco@mail	Serrenti	2025-05-31 00:00:00
 \.
 
 

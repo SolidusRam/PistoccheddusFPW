@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-container">
-    <nav class="main-nav clearfix">
+    <nav class="main-nav clearfix blur-medium">
       <RouterLink to="/" class="nav-link" title="Home">Home</RouterLink>
       <RouterLink to="/prodotti" class="nav-link" title="Prodotti">Prodotti</RouterLink>
       <RouterLink to="/aggiungi-prodotto" class="nav-link" title="Aggiungi Prodotto">Aggiungi Prodotto</RouterLink>
@@ -8,7 +8,7 @@
       <RouterLink 
         to="/login" 
         class="nav-link" 
-        :class="{ 'highlight-login': shouldHighlightLogin }"
+        :class="{ 'highlight-gradient': shouldHighlightLogin }"
         :title="sessionStore.isAuthenticated ? 'Profilo' : 'Login'">
         {{ sessionStore.isAuthenticated ? 'Profilo' : 'Login' }}
       </RouterLink>
@@ -40,7 +40,7 @@ const shouldHighlightLogin = computed(() => {
 .main-nav {
   width: 100%;
   padding: 0.5rem;
-  backdrop-filter: blur(5px);
+  /* Sostituito backdrop-filter: blur(5px) con classe utility compatibile */
   text-align: center;
 }
 
@@ -92,28 +92,7 @@ const shouldHighlightLogin = computed(() => {
 
 
 /* Stili per l'evidenziazione quando l'utente viene reindirizzato */
-.nav-link.highlight-login {
-  background-color: rgba(220, 53, 69, 0.9) ;
-  color: white ;
-  /* border: 2px solid #dc3545; */
-  animation: pulseRed 1.5s ease-in-out infinite;
-  box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
-}
-
-@keyframes pulseRed {
-  0% {
-    box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
-    background-color: rgba(220, 53, 69, 0.9);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(220, 53, 69, 1);
-    background-color: rgba(220, 53, 69, 1);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
-    background-color: rgba(220, 53, 69, 0.9);
-  }
-}
+/* Sostituito con .simple-highlight utility class - rimosse animazioni complesse */
 
 /* Media query per desktop (768px and above) */
 @media (min-width: 768px) {

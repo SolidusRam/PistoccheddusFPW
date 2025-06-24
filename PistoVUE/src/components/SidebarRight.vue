@@ -26,7 +26,7 @@
 <style scoped>
 .sidebar-right-container {
   height: 100%;
-  padding: 15px;
+  padding: 1rem;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
@@ -114,20 +114,15 @@
   font-size: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transform: rotate(10deg);
-  animation: pulse 2s infinite;
+  /* Sostituita animazione @keyframes complessa con transition semplice */
+  transition: transform 0.3s ease;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1) rotate(10deg);
-  }
-  50% {
-    transform: scale(1.1) rotate(10deg);
-  }
-  100% {
-    transform: scale(1) rotate(10deg);
-  }
+.offer-badge:hover {
+  transform: scale(1.05) rotate(10deg);
 }
+
+/* Rimossa animazione @keyframes pulse - troppo complessa */
 
 /* Responsive design per dispositivi mobili */
 @media (max-width: 767px) {

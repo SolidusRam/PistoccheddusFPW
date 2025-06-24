@@ -121,7 +121,7 @@ const upcomingEvents = ref([
 
 .sidebar-left-container {
   height: 100%;
-  padding: 15px;
+  padding: 1rem;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 8px;

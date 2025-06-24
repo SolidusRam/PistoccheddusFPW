@@ -13,12 +13,15 @@
             <div class="team-member">
               <span>Igor Derosas - <a>igorderosas@mail</a></span>
             </div>
+            <span class="team-separator"> | </span>
             <div class="team-member">
               <span>Leonardo Melis - <a>leonardomelis@mail</a></span>
             </div>
+            <span class="team-separator"> | </span>
             <div class="team-member">
               <span>Matteo Parasuco - <a>matteoparasuco@mail</a></span>
             </div>
+            <span class="team-separator"> | </span>
             <div class="team-member">
               <span>Sharon Pisanu - <a>sharonpisau@mail</a></span>
             </div>
@@ -166,11 +169,11 @@
     margin-right: 0.5rem;
   }
   
-  .team-member:not(:last-child)::after {
-    content: " |";
-    margin: 0 0.5rem;
+  /* Sostituito selettore complesso :not(:last-child)::after con elementi separati */
+  .team-separator {
     color: rgba(255, 255, 255, 0.5);
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+    margin: 0 0.5rem;
   }
 }
 </style>

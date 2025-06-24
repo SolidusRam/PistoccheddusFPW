@@ -1,10 +1,9 @@
-<!-- Logo e Titolo--> 
 <template>
   <div class="header-container clearfix">
-    <div class="logo-container hover-transform">
-      <img src="@/assets/logo.png" alt="Logo Pistoccheddus" class="logo">
-    </div>
-    <div class="title-container">
+    <div class="title-container blur-medium">
+      <div class="logo-container hover-transform">
+        <img src="@/assets/logo.png" alt="Logo Pistoccheddus" class="logo">
+      </div>
       <h1 class="site-title">Pistoccheddus</h1>
       <p class="site-subtitle">Il sito dei dolci Sardi migliori al mondo</p>
     </div>
@@ -35,9 +34,8 @@
 .title-container {
   text-align: center;
   line-height: 1;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
-  backdrop-filter: blur(2px);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
@@ -64,16 +62,15 @@
     padding: 0.75rem;
   }
   
+  .title-container {
+    text-align: left;
+    line-height: 1.5;
+    padding: 10px;
+  }
+  
   .logo-container {
     float: left;
     margin: 0 1.5rem 0 0;
-  }
-  
-  .title-container {
-    overflow: hidden;
-    text-align: left;
-    line-height: 1.5;
-    padding-top: 0.5rem;
   }
   
   .site-title {
