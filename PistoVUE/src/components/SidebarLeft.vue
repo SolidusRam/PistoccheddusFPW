@@ -23,21 +23,11 @@
       </div>
     </section>
 
-    <!-- Prodotti Popolari - visibili solo nella home -->
-    <section v-if="$route.path === '/'" class="popular-products">
-      <h3>I Più Popolari</h3>
-      <ul class="popular-list">
-        <li v-for="product in popularProducts" :key="product.id">
-          {{ product.name }} - {{ product.views }} visualizzazioni
-        </li>
-      </ul>
-    </section>
-
     <!-- Navigazione Rapida -->
     <section class="quick-nav">
       <h3>Navigazione Rapida</h3>
       <ul>
-        <li><a href="#">Torna all'inizio</a></li>
+        <li class = "torna-all-inizio"><a href="#">Torna all'inizio</a></li>
       </ul>
     </section>
   </div>
@@ -121,21 +111,19 @@ const upcomingEvents = ref([
   }
 ])
 
-// Prodotti popolari dimostrativi
-const popularProducts = ref([
-  { id: 1, name: 'Seadas', views: 1240 },
-  { id: 2, name: 'Amaretti', views: 890 },
-  { id: 3, name: 'Papassini', views: 750 }
-])
 
 </script>
 
 <style scoped>
+
+
 .sidebar-left-container {
   height: 100%;
-  padding: 1rem;
+  padding: 15px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 section {
@@ -160,6 +148,16 @@ h4 {
   font-size: 0.9rem;
 }
 
+.torna-all-inizio a {
+  color: #074079;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.torna-all-inizio a:hover {
+  color: #052a52;
+  text-decoration: underline;
+}
 .filter-group {
   margin-bottom: 1rem;
 }
@@ -236,6 +234,9 @@ event-item strong {
   .sidebar-left-container {
     position: sticky;
     top: 70px;
+    z-index: 10;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
   }
 }
 </style>
