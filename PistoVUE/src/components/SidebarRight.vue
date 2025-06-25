@@ -114,7 +114,6 @@
   font-size: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transform: rotate(10deg);
-  /* Sostituita animazione @keyframes complessa con transition semplice */
   transition: transform 0.3s ease;
 }
 
@@ -122,7 +121,6 @@
   transform: scale(1.05) rotate(10deg);
 }
 
-/* Rimossa animazione @keyframes pulse - troppo complessa */
 
 /* Responsive design per dispositivi mobili */
 @media (max-width: 767px) {

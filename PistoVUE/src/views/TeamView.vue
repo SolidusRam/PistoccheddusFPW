@@ -61,7 +61,7 @@ const getDefaultPhoto = (username) => {
     'https://randomuser.me/api/portraits/lego/7.jpg',
     'https://randomuser.me/api/portraits/lego/8.jpg'
   ]
-  // Calcola un indice basato sull'username per ottenere una foto unica
+  // Calcola un indice basato sull'username per ottenere una foto unica 
   const index = Math.abs(username.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % photos.length
   return photos[index]
 }

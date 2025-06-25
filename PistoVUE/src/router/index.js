@@ -37,9 +37,8 @@ const router = createRouter({
       component: AuthView
     }
   ],
-  // Aggiunge una classe attiva ai link corrispondenti alla rotta corrente
   linkActiveClass: 'router-link-active',
-  linkExactActiveClass: 'router-link-exact-active' // Utile per evidenziare esattamente la home
+  linkExactActiveClass: 'router-link-exact-active' //serve per 
 })
 
 export default router

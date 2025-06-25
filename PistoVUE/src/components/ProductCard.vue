@@ -45,7 +45,6 @@ export default {
       return `${price}/kg`
     },
     imageUrl() {
-      // Usa import dinamico per le immagini con Vite
       return new URL(`../assets/${this.imageSrc}`, import.meta.url).href
     }
   }

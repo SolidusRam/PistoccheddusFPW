@@ -38,7 +38,6 @@ import SidebarRight from './components/SidebarRight.vue'
 </template>
 
 <style>
-/* Stilizzazioni specifiche del componente principale app */
 .app-container {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }

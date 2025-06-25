@@ -40,7 +40,6 @@ const shouldHighlightLogin = computed(() => {
 .main-nav {
   width: 100%;
   padding: 0.5rem;
-  /* Sostituito backdrop-filter: blur(5px) con classe utility compatibile */
   text-align: center;
 }
 
@@ -92,7 +91,6 @@ const shouldHighlightLogin = computed(() => {
 
 
 /* Stili per l'evidenziazione quando l'utente viene reindirizzato */
-/* Sostituito con .simple-highlight utility class - rimosse animazioni complesse */
 
 /* Media query per desktop (768px and above) */
 @media (min-width: 768px) {

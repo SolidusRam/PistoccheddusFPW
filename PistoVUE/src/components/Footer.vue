@@ -169,7 +169,6 @@
     margin-right: 0.5rem;
   }
   
-  /* Sostituito selettore complesso :not(:last-child)::after con elementi separati */
   .team-separator {
     color: rgba(255, 255, 255, 0.5);
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);

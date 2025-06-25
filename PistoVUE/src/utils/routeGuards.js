@@ -3,15 +3,14 @@ import { useSessionStore } from '@/stores/session'
 export const requireAuth = (to, from, next) => {
   const sessionStore = useSessionStore()
   
-  // Load from storage if not already loaded
   if (!sessionStore.user) {
     sessionStore.loadFromStorage()
   }
   
   if (sessionStore.isLogged()) {
-    next() // User is authenticated, allow access
+    next() // Utente autenticato, consente l'accesso
   } else {
-    // Trigger the highlight effect in the store
+    // Attiva il trigger per il redirect di autenticazione
     sessionStore.triggerAuthRedirect()
     next('/login')
   }
@@ -20,7 +19,6 @@ export const requireAuth = (to, from, next) => {
 export const redirectIfAuthenticated = (to, from, next) => {
   const sessionStore = useSessionStore()
   
-  // Load from storage if not already loaded
   if (!sessionStore.isAuthenticated) {
     sessionStore.loadFromStorage()
   }

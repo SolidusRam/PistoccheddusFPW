@@ -39,7 +39,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-// Dati dimostrativi per la sezione "Lo sapevi che..."
+// Dati dimostrativi per la sezione "Lo sapevi che..." Array
 const facts = [
   "I dolci sardi hanno una storia millenaria che risale all'epoca nuragica",
   "Le mandorle sono uno degli ingredienti più utilizzati nella pasticceria sarda",

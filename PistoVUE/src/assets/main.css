@@ -61,9 +61,9 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Utility classes per evidenziazioni - Soluzione semplice senza keyframes */
+/* Utility classes per evidenziazioni */
 
-/* Evidenziazione rosso brillante - Facile da notare */
+/* Evidenziazione rosso brillante */
 .nav-link.highlight-gradient {
   background-color: #dc3545 !important;
   color: white !important;

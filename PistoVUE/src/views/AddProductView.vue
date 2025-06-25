@@ -260,7 +260,6 @@ p {
   margin: 0.2rem 0;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   #newproduct_model {
     margin: 1rem;
