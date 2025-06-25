@@ -2,7 +2,7 @@
 
 Applicazione web per la vendita di dolci tradizionali sardi. Il progetto include frontend Vue.js, backend Node.js/Express e database PostgreSQL.
 
-## 📱 Funzionalità
+## Funzionalità
 
 - **Frontend Vue.js:** 5 pagine responsive (Home, Prodotti, Inserimento, Team, Login/Registrazione)
 - **Backend Node.js:** API per gestione prodotti, utenti e sessioni
@@ -10,13 +10,7 @@ Applicazione web per la vendita di dolci tradizionali sardi. Il progetto include
 - **Autenticazione:** Sistema login/logout con sessioni persistenti
 - **Validazione:** Controlli frontend e backend per tutti i form
 
-## 🚀 Installazione e Avvio
-
-### Prerequisiti
-- Node.js (versione 18+)
-- PostgreSQL
-- pgAdmin (opzionale)
-
+## Installazione e Avvio
 ### Setup Database
 1. Creare database PostgreSQL chiamato `pistoccheddus`
 2. Importare il backup: `psql -d pistoccheddus < database/backup.sql`
@@ -44,7 +38,7 @@ npm run dev
 ```
 L'applicazione sarà disponibile su `http://localhost:5173`
 
-## 📋 API Endpoints
+## API Endpoints
 
 - `GET /prodotti` - Lista prodotti
 - `POST /prodotti` - Aggiungi prodotto
@@ -55,7 +49,7 @@ L'applicazione sarà disponibile su `http://localhost:5173`
 - `GET /session` - Stato sessione
 - `POST /change-password` - Cambio password
 
-## 🔑 Credenziali di Accesso
+## Credenziali di Accesso
 
 ### Utenti Test (dal database)
 - **Username:** melis | **Password:** 66431
